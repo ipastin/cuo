@@ -1,0 +1,87 @@
+{
+  "schema_version": "5.0",
+  "goal": "Produce a sourced competitor comparison and evidence gaps report",
+  "project_context": [],
+  "constraints": [
+    "Do not invent current prices or product claims"
+  ],
+  "deliverables": [
+    {
+      "id": "D1",
+      "kind": "report",
+      "description": "Competitor comparison brief"
+    }
+  ],
+  "execution_policy": {
+    "max_parallel_agents": 2,
+    "worktrees_enabled": false,
+    "approval_gates": []
+  },
+  "tasks": [
+    {
+      "id": "T1",
+      "goal": "Collect verifiable public evidence across sources",
+      "depends_on": [],
+      "capabilities": [
+        "research",
+        "source_evaluation"
+      ],
+      "skills": {
+        "required": [],
+        "optional": [],
+        "discovery_hint": []
+      },
+      "executor": {
+        "mode": "subagent",
+        "agent": "cuo-scout",
+        "model": "gpt-6-luna",
+        "effort": "high"
+      },
+      "risk": "low",
+      "evidence": [],
+      "write_scopes": [],
+      "permissions": {
+        "external_write": false,
+        "irreversible": false,
+        "human_gate": false
+      },
+      "acceptance_criteria": [
+        "Verifiable original sources and dates are included"
+      ]
+    },
+    {
+      "id": "T2",
+      "goal": "Validate contradictory claims and synthesize comparisons",
+      "depends_on": [
+        "T1"
+      ],
+      "capabilities": [
+        "critical_analysis",
+        "report_synthesis"
+      ],
+      "skills": {
+        "required": [],
+        "optional": [],
+        "discovery_hint": []
+      },
+      "executor": {
+        "mode": "main",
+        "agent": null,
+        "model": "gpt-6.1-sol",
+        "effort": "medium"
+      },
+      "risk": "low",
+      "evidence": [],
+      "write_scopes": [],
+      "permissions": {
+        "external_write": false,
+        "irreversible": false,
+        "human_gate": false
+      },
+      "acceptance_criteria": [
+        "Claims distinguish fact from inference",
+        "Unverified gaps recorded"
+      ]
+    }
+  ]
+}

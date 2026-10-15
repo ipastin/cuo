@@ -1,0 +1,170 @@
+{
+  "schema_version": "5.0",
+  "goal": "Produce evidence-backed market positioning, UX decision and an implementation plan without changing a product.",
+  "project_context": [
+    "Actual repo project specs and referenced Figma nodes if available"
+  ],
+  "constraints": [
+    "No Figma/code writes without separate authorization"
+  ],
+  "deliverables": [
+    {
+      "id": "D1",
+      "kind": "research",
+      "description": "Competitor evidence and limitations"
+    },
+    {
+      "id": "D2",
+      "kind": "specification",
+      "description": "Prioritized UX specification"
+    },
+    {
+      "id": "D3",
+      "kind": "plan",
+      "description": "Engineering implementation plan"
+    }
+  ],
+  "execution_policy": {
+    "max_parallel_agents": 3,
+    "worktrees_enabled": false,
+    "approval_gates": []
+  },
+  "tasks": [
+    {
+      "id": "T1",
+      "goal": "Collect verifiable competitor evidence",
+      "depends_on": [],
+      "capabilities": [
+        "source_research",
+        "citation_mapping"
+      ],
+      "skills": {
+        "required": [],
+        "optional": [],
+        "discovery_hint": [
+          "use available research skill if applicable"
+        ]
+      },
+      "executor": {
+        "mode": "subagent",
+        "agent": "cuo-scout",
+        "model": "gpt-6-luna",
+        "effort": "high"
+      },
+      "risk": "low",
+      "evidence": [],
+      "write_scopes": [],
+      "permissions": {
+        "external_write": false,
+        "irreversible": false,
+        "human_gate": false
+      },
+      "acceptance_criteria": [
+        "All factual claims trace to source with date",
+        "No invented citations"
+      ]
+    },
+    {
+      "id": "T2",
+      "goal": "Inventory existing product constraints and design system",
+      "depends_on": [],
+      "capabilities": [
+        "document_review",
+        "design_context"
+      ],
+      "skills": {
+        "required": [],
+        "optional": [],
+        "discovery_hint": [
+          "available design system review skill"
+        ]
+      },
+      "executor": {
+        "mode": "subagent",
+        "agent": "cuo-scout",
+        "model": "gpt-6-luna",
+        "effort": "high"
+      },
+      "risk": "low",
+      "evidence": [],
+      "write_scopes": [],
+      "permissions": {
+        "external_write": false,
+        "irreversible": false,
+        "human_gate": false
+      },
+      "acceptance_criteria": [
+        "Known constraints cite actual product docs",
+        "Unknowns remain explicit"
+      ]
+    },
+    {
+      "id": "T3",
+      "goal": "Develop constrained product/UX alternatives",
+      "depends_on": [
+        "T1",
+        "T2"
+      ],
+      "capabilities": [
+        "interaction_design",
+        "strategic_analysis"
+      ],
+      "skills": {
+        "required": [],
+        "optional": [],
+        "discovery_hint": []
+      },
+      "executor": {
+        "mode": "subagent",
+        "agent": "cuo-analyst",
+        "model": "gpt-6.1-sol",
+        "effort": "high"
+      },
+      "risk": "moderate",
+      "evidence": [],
+      "write_scopes": [],
+      "permissions": {
+        "external_write": false,
+        "irreversible": false,
+        "human_gate": false
+      },
+      "acceptance_criteria": [
+        "At least two trade-offs assessed",
+        "No unsupported user facts"
+      ]
+    },
+    {
+      "id": "T4",
+      "goal": "Form implementation handoff plan",
+      "depends_on": [
+        "T3"
+      ],
+      "capabilities": [
+        "implementation_planning"
+      ],
+      "skills": {
+        "required": [],
+        "optional": [],
+        "discovery_hint": []
+      },
+      "executor": {
+        "mode": "main",
+        "agent": null,
+        "model": "gpt-6.1-sol",
+        "effort": "medium"
+      },
+      "risk": "low",
+      "evidence": [],
+      "write_scopes": [],
+      "permissions": {
+        "external_write": false,
+        "irreversible": false,
+        "human_gate": false
+      },
+      "acceptance_criteria": [
+        "Acceptance criteria and dependencies are explicit",
+        "No unapproved writes"
+      ]
+    }
+  ]
+}

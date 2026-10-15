@@ -1,0 +1,140 @@
+{
+  "version": "5.0",
+  "note": "Human-labeled pilot scenarios; not executed against Codex",
+  "cases": [
+    {
+      "id": "E01",
+      "domain": "design",
+      "prompt": "UX flow spec with failure states",
+      "expected_capabilities": [
+        "interaction_design",
+        "state_modeling"
+      ],
+      "approval": "figma write requires consent",
+      "parallel": "research may run before spec"
+    },
+    {
+      "id": "E02",
+      "domain": "engineering",
+      "prompt": "Fix failing React component test",
+      "expected_capabilities": [
+        "debugging",
+        "testing"
+      ],
+      "approval": "no production writes",
+      "parallel": "normally none"
+    },
+    {
+      "id": "E03",
+      "domain": "research",
+      "prompt": "Market competitor briefing",
+      "expected_capabilities": [
+        "source_research",
+        "citation_mapping"
+      ],
+      "approval": "none",
+      "parallel": "independent source review allowed"
+    },
+    {
+      "id": "E04",
+      "domain": "business",
+      "prompt": "Evaluate pricing models",
+      "expected_capabilities": [
+        "unit_economics",
+        "decision_analysis"
+      ],
+      "approval": "none",
+      "parallel": "evidence gathering allowed"
+    },
+    {
+      "id": "E05",
+      "domain": "documentation",
+      "prompt": "Summarize accepted project ADRs",
+      "expected_capabilities": [
+        "retrieval",
+        "provenance"
+      ],
+      "approval": "none",
+      "parallel": "read-only"
+    },
+    {
+      "id": "E06",
+      "domain": "data",
+      "prompt": "Calculate totals in a spreadsheet",
+      "expected_capabilities": [
+        "deterministic_calculation"
+      ],
+      "approval": "editing originals requires consent",
+      "parallel": "none"
+    },
+    {
+      "id": "E07",
+      "domain": "design_engineering",
+      "prompt": "From Figma design spec to frontend",
+      "expected_capabilities": [
+        "figma_context",
+        "component_mapping",
+        "implementation",
+        "visual_qa"
+      ],
+      "approval": "figma write needs consent",
+      "parallel": "research read-only; implementation later"
+    },
+    {
+      "id": "E08",
+      "domain": "product_research",
+      "prompt": "Research user problems and draft PRD",
+      "expected_capabilities": [
+        "discovery",
+        "evidence_analysis",
+        "prd"
+      ],
+      "approval": "none",
+      "parallel": "sources may run concurrently"
+    },
+    {
+      "id": "E09",
+      "domain": "architecture",
+      "prompt": "Review risky DB migration",
+      "expected_capabilities": [
+        "system_design",
+        "migration_risk",
+        "testing"
+      ],
+      "approval": "migration needs consent",
+      "parallel": "risk reviews independent"
+    },
+    {
+      "id": "E10",
+      "domain": "creative",
+      "prompt": "Draft marketing positioning options",
+      "expected_capabilities": [
+        "copywriting",
+        "audience_analysis"
+      ],
+      "approval": "publishing requires consent",
+      "parallel": "normally parent"
+    },
+    {
+      "id": "E11",
+      "domain": "agent_system",
+      "prompt": "Review multi-agent skill routing",
+      "expected_capabilities": [
+        "agent_architecture",
+        "prompt_eval"
+      ],
+      "approval": "none",
+      "parallel": "read-only inspection"
+    },
+    {
+      "id": "E12",
+      "domain": "simple",
+      "prompt": "Rename a variable in one file",
+      "expected_capabilities": [
+        "small_edit"
+      ],
+      "approval": "normal local permissions",
+      "parallel": "no subagents"
+    }
+  ]
+}

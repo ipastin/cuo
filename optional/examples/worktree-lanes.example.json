@@ -1,0 +1,47 @@
+{
+  "version": "1",
+  "repo": "/ABSOLUTE/PATH/TO/GIT/PROJECT",
+  "base_ref": "HEAD",
+  "tasks": [
+    {
+      "id": "route-ui",
+      "model": "gpt-6-luna",
+      "effort": "high",
+      "sandbox": "read-only",
+      "allowed_paths": [],
+      "prompt": "Locate UI state machines and list risky transitions with exact code paths. Do not edit files."
+    },
+    {
+      "id": "route-api",
+      "model": "gpt-6-luna",
+      "effort": "high",
+      "sandbox": "read-only",
+      "allowed_paths": [],
+      "prompt": "Map API endpoints and contracts and return exact file evidence. Do not edit files."
+    },
+    {
+      "id": "route-tests",
+      "model": "gpt-6-luna",
+      "effort": "high",
+      "sandbox": "read-only",
+      "allowed_paths": [],
+      "prompt": "Map test coverage, identify missing regression tests and provide specific file names. No edits."
+    },
+    {
+      "id": "route-architecture",
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "sandbox": "read-only",
+      "allowed_paths": [],
+      "prompt": "Assess architecture risks and cross-module constraints with references. No edits."
+    },
+    {
+      "id": "route-advisor",
+      "model": "gpt-6-astra",
+      "effort": "low",
+      "sandbox": "read-only",
+      "allowed_paths": [],
+      "prompt": "Independently challenge the highest-impact architecture risks. No edits."
+    }
+  ]
+}

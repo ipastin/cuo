@@ -1,0 +1,207 @@
+{
+  "name": "Codex Universal Orchestration Kit",
+  "version": "6.0.0",
+  "created": "12-10-26 04-26-07",
+  "updated": "12-10-26 04-26-07",
+  "commit": "refactor(codex)!: rename skill and presets and add reliability checks",
+  "scope": "Codex local clients using ChatGPT Pro login; no API or product routing",
+  "file_count_without_manifest": 49,
+  "files": [
+    {
+      "path": "AGENTS_ROUTING_ADDENDUM__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
+      "sha256": "e686992c3822d8d599dce238c925df098ae719a84b4c8eb6ed975206c79fa9f6"
+    },
+    {
+      "path": "ARCHITECTURE__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
+      "sha256": "164106a64bd5472a36d3a7e2130658407f6d964a8a9fb992885c31d0eb8dd59e"
+    },
+    {
+      "path": "CHANGELOG__created-11-10-26_18-23-01__updated-12-10-26_04-24-37__v6.0.0.md",
+      "sha256": "1f9821fcfc6569eb4489a21a9928ffc72fb2ca1bcf54f1e0710f999a4208a7e3"
+    },
+    {
+      "path": "EVALUATION_PLAN__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
+      "sha256": "5a9daca041f7037a64817593214f7ff1669c3ff244259b90bf068cae4fbe4a74"
+    },
+    {
+      "path": "HANDOFF_AND_REVIEW__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
+      "sha256": "a43e91d5bcf865b72c0ad9c5b0104bd4baa4d5f0eb9582c578eae124e82302c0"
+    },
+    {
+      "path": "INSTALL_AND_MIGRATION__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
+      "sha256": "f48ea2547f09978b2d3bdedb3c906cf998066318635de4c2904bd4122c8b170c"
+    },
+    {
+      "path": "PROMPTS__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
+      "sha256": "4d6fcd54713d2dfcde3ed5c87c954d5d78a367db42e27a2fda087f248c7292f6"
+    },
+    {
+      "path": "README__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
+      "sha256": "af901f019d51195e875033ccdb1e16e0e037f27ad247009edc52853f3f52a672"
+    },
+    {
+      "path": "TASK_CONTRACT_TEMPLATE__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
+      "sha256": "75ed35f6dd84b92131ce57ac533a1e00cf43ce451fc0e9be05c46768837d489c"
+    },
+    {
+      "path": "VALIDATION_REPORT__created-11-10-26_18-23-01__updated-12-10-26_04-24-37__v6.0.0.md",
+      "sha256": "0160bad2906ced387e177f6beb24e7a35d7f71db77884817dbaaeada38313149"
+    },
+    {
+      "path": "agents/cuo-analyst.toml",
+      "sha256": "74abea323ad7abe4be61e05a3d9c48427458f62069751057bed1569789a9d71d"
+    },
+    {
+      "path": "agents/cuo-executor.toml",
+      "sha256": "a77e5b3fb213ffcf47c76a5ef8623b1b642b64f2af651182c2fe8de684ec2bcd"
+    },
+    {
+      "path": "agents/cuo-expert.toml",
+      "sha256": "13edae53430990fdb2058d6e34304184ef6c86afe02eaf998bea433b6008cef9"
+    },
+    {
+      "path": "agents/cuo-reviewer.toml",
+      "sha256": "a2d6d12b6bfc9bb28755d5f33f2a3a6d22b27b855ca919f4234536eca1583a1b"
+    },
+    {
+      "path": "agents/cuo-scout.toml",
+      "sha256": "ea452c7d57d5ca2806463466d8b3cc6cc5e98017005be6546a2435d079f3c8e6"
+    },
+    {
+      "path": "config-fragment.toml",
+      "sha256": "9c07ab3e1942cdbc88c4ca66c04b320ee53b3b104ba868574e0e67b1f5dea85b"
+    },
+    {
+      "path": "evals/eval_cases.json",
+      "sha256": "128bbbd63a1341ff74e0b079ee6433c965ce9a4947e54970e3096b7cb2a7a56d"
+    },
+    {
+      "path": "examples/plans/cross-domain.json",
+      "sha256": "8185336b95621b9112b30878bd6616fd15e8349a0c9285fe028931625c206c06"
+    },
+    {
+      "path": "examples/plans/engineering.json",
+      "sha256": "ee261b528e74c6bb484a89fb0a9c711fb7210fe37d476e51cad85fe69e97261b"
+    },
+    {
+      "path": "examples/plans/research.json",
+      "sha256": "42b4b1db618b1089a0b61df1c8c6b95c0c79b2f9777d9cb6407902d5f0b50163"
+    },
+    {
+      "path": "examples/plans/simple-deterministic.json",
+      "sha256": "dde670745713b1af36714a94faf78310b7f9f2979adf6bbcaaff1437b933f9b0"
+    },
+    {
+      "path": "examples/trace/event.json",
+      "sha256": "d59ec9fca843fbcd48925c5cca47da5090789d2be1c77402af804e107680abbc"
+    },
+    {
+      "path": "examples/triage/cross-domain.json",
+      "sha256": "7462a9f046fc5200bda2337eb1fd2aa47f11d999c949a18a0251260ece9a019d"
+    },
+    {
+      "path": "examples/triage/design-review.json",
+      "sha256": "dbb1ef0f9f7687c00677d16187a30d20b78afcd94fa32f8b5c7cd67f3b4c5c0c"
+    },
+    {
+      "path": "examples/triage/simple.json",
+      "sha256": "e77e0698d90ecfad08a399493c3f41e5569550de162a6e01b4b2c3167897b474"
+    },
+    {
+      "path": "examples/verification/ux-review.json",
+      "sha256": "ef10bb0d26a26ff60b5844c1f4bfa60824a0e3abbb844134727933353af57032"
+    },
+    {
+      "path": "migration/v5.0-baseline.json",
+      "sha256": "0da68fb2e364201cd3785ed9009e29a17aabf6bdfd29f64b3560beec56122a25"
+    },
+    {
+      "path": "optional/cuo-terra-candidate.toml",
+      "sha256": "8832a24525fbb881a88afb5f3e5e46d2dfe74487ebd7312d3fdfd54a24f4e741"
+    },
+    {
+      "path": "optional/examples/worktree-lanes.example.json",
+      "sha256": "6105895edf0b06c3dc90e7707486afbc3ecac18d4e784df9b665d9de6f19b9f9"
+    },
+    {
+      "path": "optional/scripts/worktree_lanes.py",
+      "sha256": "49f9b6a83aa48b4187a619195cf80c2e3cceb52d457e782ca3dd33e0b3751ff6"
+    },
+    {
+      "path": "scripts/install.py",
+      "sha256": "a8b86bd18af532e3cfc640f046caa8692f994769a0c461a379a803a51921389b"
+    },
+    {
+      "path": "scripts/migrate_plan.py",
+      "sha256": "ba030c9340da78beff839ed79a951c206961e9cabaee8402bdc08d60e721ac96"
+    },
+    {
+      "path": "scripts/skill_eligibility.py",
+      "sha256": "bebd8d1f87c07afa711aaa2f89b901e8d44f5c0795e5af9ee37fd9ede13a4633"
+    },
+    {
+      "path": "scripts/skills_inventory.py",
+      "sha256": "ee28d9876169cacb086b6462f1b41535a535fa3e8599c3bd66b3f9295cff3a40"
+    },
+    {
+      "path": "scripts/trace_record.py",
+      "sha256": "23e859d788cb83c0d303eba1bc9cf0660696d7d889f37be44ee3cdac379ea719"
+    },
+    {
+      "path": "scripts/triage_check.py",
+      "sha256": "f61993565bff2e40eea4cb933d5ee162447c43b7aee74c7be6c1c9f0011f9cd6"
+    },
+    {
+      "path": "scripts/validate_plan.py",
+      "sha256": "11abaaa98839cf4e78a966546b398dd167cbce81ade408d7579a408de358af6f"
+    },
+    {
+      "path": "scripts/verify_result.py",
+      "sha256": "b5908b4684612a89333723423eb0879b8bd22b6c24247b33816d7cb51abcacf3"
+    },
+    {
+      "path": "skill/codex-universal-orchestrate/SKILL.md",
+      "sha256": "3ca619c9344e7f0c6a630ab792b6febe5d2f6ace984a731b13ba1900391f15ed"
+    },
+    {
+      "path": "skill/codex-universal-orchestrate/references/ADAPTIVE_TRIAGE__created-12-10-26_04-21-24__updated-12-10-26_04-24-37__v6.0.0.md",
+      "sha256": "6ff4066fa5012c43a1231e6910dd2b44d4d667181380e5d2191d52c81bf76311"
+    },
+    {
+      "path": "skill/codex-universal-orchestrate/references/CORE_POLICY__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
+      "sha256": "ec4f847654b0cf21e368443254fd19917f6176b839d884535cdbcba3c102a879"
+    },
+    {
+      "path": "skill/codex-universal-orchestrate/references/ROUTING_AND_GATES__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
+      "sha256": "4081c908fbc0200ee20dab87ac909e6d3b2bbea38ad272113e2a131f8c342a77"
+    },
+    {
+      "path": "skill/codex-universal-orchestrate/references/SKILL_ELIGIBILITY__created-12-10-26_04-21-24__updated-12-10-26_04-24-37__v6.0.0.md",
+      "sha256": "957e0d3a5886df28693379afa2ab66267c378f627737ed7d67beea81346a9aee"
+    },
+    {
+      "path": "skill/codex-universal-orchestrate/references/SKILL_EXECUTION__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
+      "sha256": "86c24211ffd2cec1d0670ad34b886b722cc4bb6e6c8b3b1f2ff11f880901cb92"
+    },
+    {
+      "path": "skill/codex-universal-orchestrate/references/VERIFICATION_TRACE__created-12-10-26_04-21-24__updated-12-10-26_04-24-37__v6.0.0.md",
+      "sha256": "c7ec307cdda8da8ea6cf29e8d8ccbdd6109a5045dafe44457dabb15e733b8298"
+    },
+    {
+      "path": "skill/codex-universal-orchestrate/references/WORKTREE_NOTES__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
+      "sha256": "07568f2614be970344ade8b0c37755ea5e78f54d845b1caf856ba190819e1c1b"
+    },
+    {
+      "path": "tests/fixtures/v5-legacy.zip",
+      "sha256": "d0cdad0d580066fc939822b7f6d99dfd65159553daa99d7ff48e0390ffe75e70"
+    },
+    {
+      "path": "tests/test_kit.py",
+      "sha256": "3d503cc1ee2ea40f3393e8eb74dbde4fa0e0859725465f56a9e8c9b1d03c3474"
+    },
+    {
+      "path": "tests/test_v51.py",
+      "sha256": "ef1e481193457a8e4a9cd7e9c818628d61420f51d3f5cef44cb498c860884e36"
+    }
+  ]
+}

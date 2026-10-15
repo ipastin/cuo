@@ -1,0 +1,50 @@
+{
+  "schema_version": "5.0",
+  "goal": "Perform a safe deterministic lookup in a local source file",
+  "project_context": [],
+  "constraints": [],
+  "deliverables": [
+    {
+      "id": "D1",
+      "kind": "answer",
+      "description": "Exact factual answer with source reference"
+    }
+  ],
+  "execution_policy": {
+    "max_parallel_agents": 1,
+    "worktrees_enabled": false,
+    "approval_gates": []
+  },
+  "tasks": [
+    {
+      "id": "T1",
+      "goal": "Read requested file and report literal target",
+      "depends_on": [],
+      "capabilities": [
+        "exact_text_lookup"
+      ],
+      "skills": {
+        "required": [],
+        "optional": [],
+        "discovery_hint": []
+      },
+      "executor": {
+        "mode": "tool_only",
+        "agent": null,
+        "model": null,
+        "effort": null
+      },
+      "risk": "low",
+      "evidence": [],
+      "write_scopes": [],
+      "permissions": {
+        "external_write": false,
+        "irreversible": false,
+        "human_gate": false
+      },
+      "acceptance_criteria": [
+        "Literal match reported without inference"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "schema_version": "5.0",
+  "goal": "Implement isolated UI component with documentation review",
+  "project_context": [],
+  "constraints": [
+    "No auth or database changes"
+  ],
+  "deliverables": [
+    {
+      "id": "D1",
+      "kind": "code",
+      "description": "Working UI component plus checks"
+    }
+  ],
+  "execution_policy": {
+    "max_parallel_agents": 2,
+    "worktrees_enabled": false,
+    "approval_gates": []
+  },
+  "tasks": [
+    {
+      "id": "T1",
+      "goal": "Inventory component interfaces and usage",
+      "depends_on": [],
+      "capabilities": [
+        "code_exploration"
+      ],
+      "skills": {
+        "required": [],
+        "optional": [],
+        "discovery_hint": []
+      },
+      "executor": {
+        "mode": "subagent",
+        "agent": "cuo-scout",
+        "model": "gpt-6-luna",
+        "effort": "high"
+      },
+      "risk": "low",
+      "evidence": [],
+      "write_scopes": [],
+      "permissions": {
+        "external_write": false,
+        "irreversible": false,
+        "human_gate": false
+      },
+      "acceptance_criteria": [
+        "All symbols resolve to repository files"
+      ]
+    },
+    {
+      "id": "T2",
+      "goal": "Implement specified component",
+      "depends_on": [
+        "T1"
+      ],
+      "capabilities": [
+        "frontend_implementation"
+      ],
+      "skills": {
+        "required": [],
+        "optional": [],
+        "discovery_hint": []
+      },
+      "executor": {
+        "mode": "subagent",
+        "agent": "cuo-executor",
+        "model": "gpt-6.1-sol",
+        "effort": "medium"
+      },
+      "risk": "moderate",
+      "evidence": [],
+      "write_scopes": [
+        "src/components/NewWidget.tsx"
+      ],
+      "permissions": {
+        "external_write": false,
+        "irreversible": false,
+        "human_gate": false
+      },
+      "acceptance_criteria": [
+        "Component matches accepted API",
+        "Targeted tests run"
+      ]
+    },
+    {
+      "id": "T3",
+      "goal": "Review changed component and tests",
+      "depends_on": [
+        "T2"
+      ],
+      "capabilities": [
+        "code_review"
+      ],
+      "skills": {
+        "required": [],
+        "optional": [],
+        "discovery_hint": []
+      },
+      "executor": {
+        "mode": "subagent",
+        "agent": "cuo-reviewer",
+        "model": "gpt-6.1-sol",
+        "effort": "high"
+      },
+      "risk": "low",
+      "evidence": [],
+      "write_scopes": [],
+      "permissions": {
+        "external_write": false,
+        "irreversible": false,
+        "human_gate": false
+      },
+      "acceptance_criteria": [
+        "Findings prioritized and source-cited",
+        "No false test success claims"
+      ]
+    }
+  ]
+}

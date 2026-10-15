@@ -1,0 +1,1 @@
+{"schema_version":"1.0","goal":"Normalize local filenames","expected_deliverable":"Renamed files","mode":"direct","risk":"low","proposed_subagents":0,"delegation_benefit":"","approval_required":false,"irreversible_operation":false,"decision_reason":"Bounded, deterministic, easily validated change"}

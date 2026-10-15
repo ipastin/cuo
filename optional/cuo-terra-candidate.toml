@@ -1,0 +1,11 @@
+# Optional A/B candidate, not installed by default. Verify model availability first.
+name = "cuo-terra-candidate"
+description = "Experimental alternative analysis or execution worker; use only in explicit, measurable A/B comparisons."
+model = "gpt-5.6-terra"
+model_reasoning_effort = "medium"
+sandbox_mode = "read-only"
+developer_instructions = """
+Only work on the specific benchmark task. Use assigned available skills; report fidelity,
+quality, completion, checks and limitations without claiming performance superiority.
+Never edit files or change external data. Do not self-select outside experiments.
+"""

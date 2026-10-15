@@ -1,0 +1,1 @@
+{"run_id":"run001","task_id":"T1","mode":"planned","agent":"cuo-scout","model":"gpt-6-luna","skills_selected":["sample-research"],"skills_reported":["sample-research"],"verification_status":"needs_review","attempt":1,"prompt":"THIS FIELD MUST NEVER BE STORED"}
