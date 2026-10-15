@@ -3,8 +3,8 @@ Codex Universal Orchestrator (CUO)
 
 :Version: 6.0.0
 :Created: 15-10-26 08-24-40 (Europe/Moscow)
-:Updated: 15-10-26 08-24-40 (Europe/Moscow)
-:Commit: chore(repo): import verified CUO Kit v6.0.0
+:Updated: 15-10-26 08-36-03 (Europe/Moscow)
+:Commit: docs(repo): license CUO Kit under MIT
 
 CUO provides a Codex orchestration skill, agent presets, installation and
 migration tools, examples, and validation tests. It supports local Codex clients
@@ -34,12 +34,17 @@ was not available for a direct comparison.
 The original documentation retains its proposed status. This import does not
 establish model entitlement or verify orchestration behavior in a live session.
 
-Privacy and license
--------------------
+License and provenance
+----------------------
 
-The repository was created private. The source Kit has no LICENSE file; no
-open-source license has been selected or added. Choose a license before public
-distribution. No GitHub Release or public deployment was created for this import.
+The files in this repository are licensed under the `MIT License <LICENSE>`_.
+Copyright (c) 2026 Igor Pastin. CUO is an independent project for Codex and is
+not affiliated with OpenAI.
 
-Only this README and .gitignore were added to the original Kit. Local machine
-metadata, credentials, and generated test files are excluded.
+The Kit was produced in the owner's ChatGPT project. The source archive and
+the nested legacy test fixture were inspected for third-party copyright notices,
+personal paths, and common secret patterns; none were found. This inspection
+cannot establish provenance beyond the available archive.
+
+This README, .gitignore, and LICENSE were added to the original Kit. Local
+machine metadata, credentials, and generated test files are excluded.
