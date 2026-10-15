@@ -64,10 +64,13 @@ class ConfigurationTests(unittest.TestCase):
         for p in ROOT.rglob("*.md"):
             text = p.read_text(encoding="utf-8")
             with self.subTest(file=p.name):
-                self.assertTrue(text.startswith("---\n"))
+                if p.name == "README.md":
+                    self.assertTrue(text.startswith("<!--\n"))
+                else:
+                    self.assertTrue(text.startswith("---\n"))
                 for k in ("created", "updated", "version"):
                     self.assertRegex(text, f"(?m)^{k}:")
-                if p.name != "SKILL.md":
+                if p.name not in ("SKILL.md", "README.md"):
                     self.assertRegex(p.name, r"__created-\d{2}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}__updated-\d{2}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}__v6\.0\.0\.md$")
 
     def test_only_one_orchestrator_skill(self):

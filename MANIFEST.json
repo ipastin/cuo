@@ -2,8 +2,8 @@
   "name": "Codex Universal Orchestration Kit",
   "version": "6.0.0",
   "created": "12-10-26 04-26-07",
-  "updated": "12-10-26 04-26-07",
-  "commit": "refactor(codex)!: rename skill and presets and add reliability checks",
+  "updated": "15-10-26 08-54-34",
+  "commit": "docs(readme): add a verified CUO quickstart",
   "scope": "Codex local clients using ChatGPT Pro login; no API or product routing",
   "file_count_without_manifest": 49,
   "files": [
@@ -197,7 +197,7 @@
     },
     {
       "path": "tests/test_kit.py",
-      "sha256": "3d503cc1ee2ea40f3393e8eb74dbde4fa0e0859725465f56a9e8c9b1d03c3474"
+      "sha256": "0dfc42df0c8a507577dee4265e2a933b50ccbdc0f512cfd308ef3961f5aaf7cb"
     },
     {
       "path": "tests/test_v51.py",
