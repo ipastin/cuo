@@ -1,15 +1,15 @@
 <!--
 created: "15-10-26 08-52-37"
-updated: "15-10-26 08-55-48"
+updated: "16-10-26 09-25-18"
 version: "6.0.0"
-commit: "docs(readme): add a verified CUO quickstart"
+commit: "docs(readme): clarify Kit provenance after triage update"
 -->
 
 # Codex Universal Orchestrator (CUO)
 
 CUO is a local orchestration kit for Codex. It provides a Skill, five agent presets, and validation tools for breaking work into verifiable tasks, reusing installed Skills, and delegating only when a subtask benefits from it.
 
-**Status:** Kit v6.0.0 is marked `proposed` in its [source documentation](README__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md). The included validators check structure; they cannot prove that a model is available to your account or that an orchestration run succeeded.
+**Status:** Kit v6.0.0 is marked `proposed` in its [source documentation](README__created-11-10-26_18-13-52__updated-16-10-26_09-09-10__v6.0.0.md). The included validators check structure; they cannot prove that a model is available to your account or that an orchestration run succeeded.
 
 CUO is for local Codex clients signed in with ChatGPT Pro. It does not configure product runtime model routing, API keys, or an external orchestration service.
 
@@ -61,11 +61,11 @@ python3 -m unittest discover -s tests -v
 python3 scripts/validate_plan.py examples/plans/cross-domain.json
 ```
 
-The validators check plan structure, dependency references, write conflicts, and approval gates. They do not launch agents or validate live runtime behavior. The 49 files listed in [MANIFEST.json](MANIFEST.json) match their SHA-256 hashes in this checkout. To support the conventional `README.md` name, the Markdown metadata test and its manifest hash were updated; the remaining Kit files retain their imported content. The manifest covers Kit files, not the additional repository README and license files.
+The validators check plan structure, dependency references, write conflicts, and approval gates. They do not launch agents or validate live runtime behavior. The 49 files listed in [MANIFEST.json](MANIFEST.json) match their SHA-256 hashes in this checkout. The Kit documentation and corresponding manifest entries changed after import; the manifest covers Kit files, not this repository README or the license file.
 
 ## Read more
 
-- [Original Kit README](README__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md) — capabilities, files, and routing defaults.
+- [Original Kit README](README__created-11-10-26_18-13-52__updated-16-10-26_09-09-10__v6.0.0.md) — capabilities, files, and routing defaults.
 - [Installation and migration](INSTALL_AND_MIGRATION__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md) — v4/v5 upgrades, project scope, and rollback.
 - [Architecture](ARCHITECTURE__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md) — roles and task flow.
 - [Task contract template](TASK_CONTRACT_TEMPLATE__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md) — bounded agent handoffs.
