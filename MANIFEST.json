@@ -2,8 +2,8 @@
   "name": "Codex Universal Orchestration Kit",
   "version": "6.0.0",
   "created": "12-10-26 04-26-07",
-  "updated": "15-10-26 08-54-34",
-  "commit": "docs(readme): add a verified CUO quickstart",
+  "updated": "16-10-26 09-10-02",
+  "commit": "docs(codex): account for context capacity in triage",
   "scope": "Codex local clients using ChatGPT Pro login; no API or product routing",
   "file_count_without_manifest": 49,
   "files": [
@@ -36,8 +36,8 @@
       "sha256": "4d6fcd54713d2dfcde3ed5c87c954d5d78a367db42e27a2fda087f248c7292f6"
     },
     {
-      "path": "README__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
-      "sha256": "af901f019d51195e875033ccdb1e16e0e037f27ad247009edc52853f3f52a672"
+      "path": "README__created-11-10-26_18-13-52__updated-16-10-26_09-09-10__v6.0.0.md",
+      "sha256": "6d5a23e292b4640fb62a49ce8b06dccc92333564c2780c77bc0f6c4f930dcb60"
     },
     {
       "path": "TASK_CONTRACT_TEMPLATE__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
@@ -161,11 +161,11 @@
     },
     {
       "path": "skill/codex-universal-orchestrate/SKILL.md",
-      "sha256": "3ca619c9344e7f0c6a630ab792b6febe5d2f6ace984a731b13ba1900391f15ed"
+      "sha256": "93be2a611fbcb9981e0014b68d48579941bfe1709d052a9c017e11c4d6577c21"
     },
     {
-      "path": "skill/codex-universal-orchestrate/references/ADAPTIVE_TRIAGE__created-12-10-26_04-21-24__updated-12-10-26_04-24-37__v6.0.0.md",
-      "sha256": "6ff4066fa5012c43a1231e6910dd2b44d4d667181380e5d2191d52c81bf76311"
+      "path": "skill/codex-universal-orchestrate/references/ADAPTIVE_TRIAGE__created-12-10-26_04-21-24__updated-16-10-26_09-09-10__v6.0.0.md",
+      "sha256": "3cc72a42c8dc20e0f2f44ef305e742d5370e92a96461aac3d9df99c648b97020"
     },
     {
       "path": "skill/codex-universal-orchestrate/references/CORE_POLICY__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",

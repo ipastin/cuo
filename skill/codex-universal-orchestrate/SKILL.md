@@ -2,9 +2,9 @@
 name: codex-universal-orchestrate
 description: Universal Codex orchestration for substantial multi-step or cross-domain tasks; reuse installed Skills, plan dependency DAGs, delegate bounded subtasks across models, verify deliverables. Use on explicit delegation or complex workflows; skip trivial tasks. Applies to Codex work, never product-runtime model routing.
 created: "11-10-26 18-13-52"
-updated: "12-10-26 04-24-37"
+updated: "16-10-26 09-09-10"
 version: "6.0.0"
-commit: "refactor(codex)!: rename orchestrator and ship reliability checks"
+commit: "docs(codex): account for context capacity in triage"
 ---
 
 # Universal Codex Orchestration
@@ -17,7 +17,7 @@ Input: user's goal plus applicable project policies, existing context, permissio
 
 ## Algorithm
 
-0. Before a full plan, apply **Adaptive Triage** from `references/ADAPTIVE_TRIAGE__created-12-10-26_04-21-24__updated-12-10-26_04-24-37__v6.0.0.md`; execute trivial work directly. An additional JSON triage is optional, not mandatory.
+0. Before a full plan, apply **Adaptive Triage** from `references/ADAPTIVE_TRIAGE__created-12-10-26_04-21-24__updated-16-10-26_09-09-10__v6.0.0.md`; execute trivial work directly. An additional JSON triage is optional, not mandatory.
 1. Identify **intent, deliverables, context, risk and permissions** independently of domain keywords. Read applicable AGENTS/accepted project docs.
 2. Discover existing relevant Skills via metadata. Do not invent names, assume availability, or load every skill in the parent. Read `references/SKILL_EXECUTION__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md` for skill handoff.
 3. Confirm required Skill eligibility against `references/SKILL_ELIGIBILITY__created-12-10-26_04-21-24__updated-12-10-26_04-24-37__v6.0.0.md`. For meaningful multi-step tasks, define small independently verifiable outputs, prerequisites, source references, acceptance criteria, risk and approvals. Keep a concise Task DAG. See `references/CORE_POLICY__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md`.

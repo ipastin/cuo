@@ -1,15 +1,15 @@
 <!--
 created: "15-10-26 08-52-37"
-updated: "15-10-26 08-55-48"
+updated: "16-10-26 09-09-10"
 version: "6.0.0"
-commit: "docs(readme): add a verified CUO quickstart"
+commit: "docs(codex): account for context capacity in triage"
 -->
 
 # Codex Universal Orchestrator (CUO)
 
 CUO is a local orchestration kit for Codex. It provides a Skill, five agent presets, and validation tools for breaking work into verifiable tasks, reusing installed Skills, and delegating only when a subtask benefits from it.
 
-**Status:** Kit v6.0.0 is marked `proposed` in its [source documentation](README__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md). The included validators check structure; they cannot prove that a model is available to your account or that an orchestration run succeeded.
+**Status:** Kit v6.0.0 is marked `proposed` in its [source documentation](README__created-11-10-26_18-13-52__updated-16-10-26_09-09-10__v6.0.0.md). The included validators check structure; they cannot prove that a model is available to your account or that an orchestration run succeeded.
 
 CUO is for local Codex clients signed in with ChatGPT Pro. It does not configure product runtime model routing, API keys, or an external orchestration service.
 
@@ -65,7 +65,7 @@ The validators check plan structure, dependency references, write conflicts, and
 
 ## Read more
 
-- [Original Kit README](README__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md) — capabilities, files, and routing defaults.
+- [Original Kit README](README__created-11-10-26_18-13-52__updated-16-10-26_09-09-10__v6.0.0.md) — capabilities, files, and routing defaults.
 - [Installation and migration](INSTALL_AND_MIGRATION__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md) — v4/v5 upgrades, project scope, and rollback.
 - [Architecture](ARCHITECTURE__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md) — roles and task flow.
 - [Task contract template](TASK_CONTRACT_TEMPLATE__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md) — bounded agent handoffs.
