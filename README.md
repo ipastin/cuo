@@ -1,8 +1,8 @@
 <!--
 created: "15-10-26 08-52-37"
-updated: "16-10-26 09-09-10"
+updated: "16-10-26 09-25-18"
 version: "6.0.0"
-commit: "docs(codex): account for context capacity in triage"
+commit: "docs(readme): clarify Kit provenance after triage update"
 -->
 
 # Codex Universal Orchestrator (CUO)
@@ -61,7 +61,7 @@ python3 -m unittest discover -s tests -v
 python3 scripts/validate_plan.py examples/plans/cross-domain.json
 ```
 
-The validators check plan structure, dependency references, write conflicts, and approval gates. They do not launch agents or validate live runtime behavior. The 49 files listed in [MANIFEST.json](MANIFEST.json) match their SHA-256 hashes in this checkout. To support the conventional `README.md` name, the Markdown metadata test and its manifest hash were updated; the remaining Kit files retain their imported content. The manifest covers Kit files, not the additional repository README and license files.
+The validators check plan structure, dependency references, write conflicts, and approval gates. They do not launch agents or validate live runtime behavior. The 49 files listed in [MANIFEST.json](MANIFEST.json) match their SHA-256 hashes in this checkout. The Kit documentation and corresponding manifest entries changed after import; the manifest covers Kit files, not this repository README or the license file.
 
 ## Read more
 
