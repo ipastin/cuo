@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "purpose": "Read-only input-sufficiency triage; these labels do not validate task outcomes.",
+  "source": "eval_cases.json",
+  "cases": [
+    {
+      "id": "E01",
+      "expected_status": "needs_input",
+      "required_inputs": [
+        "product and user scenario",
+        "entry point and intended outcome"
+      ],
+      "max_delegated_agent_launches": 0
+    },
+    {
+      "id": "E07",
+      "expected_status": "needs_input",
+      "required_inputs": [
+        "Figma frame or design spec",
+        "target frontend project"
+      ],
+      "max_delegated_agent_launches": 0
+    },
+    {
+      "id": "E12",
+      "expected_status": "needs_input",
+      "required_inputs": [
+        "file path",
+        "current variable name",
+        "new variable name"
+      ],
+      "max_delegated_agent_launches": 0
+    }
+  ]
+}

@@ -55,9 +55,11 @@ class ConfigurationTests(unittest.TestCase):
 
     def test_skill_compatibility_name_and_metadata(self):
         txt = (ROOT/"skill/codex-universal-orchestrate/SKILL.md").read_text(encoding="utf-8")
-        self.assertRegex(txt, r"(?m)^name: codex-universal-orchestrate$")
-        for k in ("description", "created", "updated", "version", "commit"):
-            self.assertRegex(txt, f"(?m)^{k}:")
+        header = txt.split("---", 2)[1]
+        self.assertEqual(re.findall(r"(?m)^([a-z][a-z-]*):", header), ["name", "description", "metadata"])
+        self.assertRegex(header, r"(?m)^name: codex-universal-orchestrate$")
+        for k in ("created", "updated", "version", "commit"):
+            self.assertRegex(header, f"(?m)^  {k}:")
         self.assertIn('version: "6.0.0"',txt)
 
     def test_md_artifact_metadata_and_filename(self):
@@ -69,7 +71,8 @@ class ConfigurationTests(unittest.TestCase):
                 else:
                     self.assertTrue(text.startswith("---\n"))
                 for k in ("created", "updated", "version"):
-                    self.assertRegex(text, f"(?m)^{k}:")
+                    indent = "  " if p.name == "SKILL.md" else ""
+                    self.assertRegex(text, f"(?m)^{indent}{k}:")
                 if p.name not in ("SKILL.md", "README.md"):
                     self.assertRegex(p.name, r"__created-\d{2}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}__updated-\d{2}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}__v6\.0\.0\.md$")
 
@@ -196,6 +199,24 @@ class PlanTests(unittest.TestCase):
         cases=json.loads((ROOT/"evals/eval_cases.json").read_text(encoding="utf-8"))["cases"]
         self.assertGreaterEqual(len(cases),12)
         self.assertGreaterEqual(len({c["domain"] for c in cases}),8)
+
+    def test_needs_input_triage_cases(self):
+        source=json.loads((ROOT/"evals/eval_cases.json").read_text(encoding="utf-8"))
+        triage=json.loads((ROOT/"evals/triage_needs_input.json").read_text(encoding="utf-8"))
+        self.assertEqual(triage["source"], "eval_cases.json")
+        self.assertEqual([c["id"] for c in triage["cases"]], ["E01", "E07", "E12"])
+        self.assertTrue({c["id"] for c in triage["cases"]} <= {c["id"] for c in source["cases"]})
+        for case in triage["cases"]:
+            self.assertEqual(case["expected_status"], "needs_input")
+            self.assertTrue(case["required_inputs"])
+            self.assertEqual(case["max_delegated_agent_launches"], 0)
+
+    def test_authorized_independent_stage_ignores_sufficient_context(self):
+        policy = next((ROOT/"skill/codex-universal-orchestrate/references").glob("ADAPTIVE_TRIAGE__*.md")).read_text(encoding="utf-8")
+        self.assertIn("For work that remains in the current chat, compare a reliable remaining-capacity value", policy)
+        self.assertNotIn("If a reliable remaining-capacity value is available", policy)
+        self.assertIn("If no suitable chat exists, create one regardless of whether measured remaining context is sufficient or `unknown`.", policy)
+        self.assertIn("standing permission + substantial independent stage + no suitable chat after the same-turn check + sufficient measured context => create one new chat", policy)
 
 
 class SkillInventoryTests(unittest.TestCase):
