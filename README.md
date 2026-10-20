@@ -1,8 +1,8 @@
 <!--
 created: "15-10-26 08-52-37"
-updated: "20-10-26 17-53-01"
+updated: "20-10-26 17-55-32"
 version: "6.0.0"
-commit: "docs(readme): clarify AGENTS block replacement"
+commit: "docs(readme): clarify installer update and backup behavior"
 -->
 
 # Codex Universal Orchestrator (CUO)
@@ -48,7 +48,7 @@ The default global installation manages these locations:
 | `~/.codex/AGENTS.md` | Adds or updates a marked routing-policy block; backs up an existing file before changing it. |
 | `~/.codex/config.toml` | Creates a config if absent. An existing config is preserved; differing settings produce `routing-v6.0.fragment.toml` for manual merging. |
 
-Review a generated config fragment before proceeding: merge the needed settings without duplicating `[agents]` or removing your other configuration. See the [installation guide](INSTALL_AND_MIGRATION__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md) for project scope and `AGENTS.override.md` handling.
+If the installer generates a config fragment, review it before proceeding: merge the needed settings without duplicating `[agents]` or removing your other configuration. See the [installation guide](INSTALL_AND_MIGRATION__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md) for project scope and `AGENTS.override.md` handling.
 
 <details>
 <summary>Custom Codex directory</summary>
@@ -116,7 +116,7 @@ python3 scripts/install.py --replace-managed
 python3 scripts/install.py --replace-managed --apply
 ```
 
-The first command previews replacement; the second replaces differing managed Skills and presets with backups under `~/.codex/routing-v6.0-backups/`. Existing `config.toml` settings still require a manual merge when they differ.
+The first command previews replacement; the second replaces differing managed Skills and presets with backups under `$CODEX_HOME/routing-v6.0-backups/` when `CODEX_HOME` is set, or `~/.codex/routing-v6.0-backups/` otherwise. Existing `config.toml` settings still require a manual merge when they differ.
 
 Review the marked routing block in `AGENTS.md` before any `--apply`: the installer replaces differing block contents with the shipped policy and backs up the file, even without `--replace-managed`. Text outside that block is preserved.
 
