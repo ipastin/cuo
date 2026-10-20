@@ -1,10 +1,10 @@
 ---
 title: "Adaptive Triage & Delegation Policy"
 created: "12-10-26 04-21-24"
-updated: "16-10-26 09-09-10"
+updated: "16-10-26 14-48-25"
 version: "6.0.0"
 status: "proposed"
-commit: "docs(codex): account for context capacity in triage"
+commit: "docs(cuo): check chats before creation and shorten handoffs"
 ---
 
 # Adaptive Triage & Delegation Policy
@@ -30,9 +30,12 @@ Never use word count as the main complexity signal. Do not call Luna as an exter
 
 ## Current session or new session
 
+- At each bounded-stage boundary, identify whether the next stage is a substantial, independent deliverable with its own inputs and acceptance criteria. Continue in the current chat for fixes, review, merge checks, or other work tightly coupled to its active PR or decisions.
 - Use a context-window measurement only when the active Codex runtime explicitly provides it for **this session and model**. Record the named runtime source, units, and observation time. Token usage for one turn, a model's maximum window, transcript length, elapsed time, and context-mode storage statistics are not measurements of remaining capacity.
 - If a reliable remaining-capacity value is available, compare it with the estimated context needed for the **next bounded stage**, including tool results, verification, reasoning, and final output. Use a safety margin appropriate to that stage; do not apply a universal percentage threshold. Continue here when there is enough room. Otherwise, prepare a concise, evidence-linked handoff and recommend a new session before starting the stage.
 - If the runtime does not expose a reliable value, record capacity as `unknown`; do not invent a percentage or infer one from proxy metrics. Finish short, self-contained work here. Before a substantial new stage, weigh the expected context load, prior compaction, repeated rediscovery, and dependence on earlier decisions. Recommend a new session with a concise handoff when continuity has become unreliable; otherwise continue here and reassess at the next stage boundary.
-- Compaction can preserve continuity within one session, but it does not prove that every earlier detail survived. A new session is a recommendation unless the user has explicitly requested its creation. Neither context pressure nor a handoff authorizes a separate CLI session, worktree, or external write.
+- When the next stage is substantial and independent, and the user has explicitly requested a new chat or already granted standing permission to create one automatically, check existing chats **in the creating turn, before calling `create_thread`**. Search the target project and relevant projectless chats for the same stage; continue a suitable chat instead of creating a duplicate. Follow pagination when available. If the list is incomplete, record what was searched and label global absence `needs_review`; if a duplicate remains plausible, pause creation and ask the user.
+- Create one chat in the appropriate saved project with a short handoff covering goal, verified current state, links to authoritative sources, open decisions, acceptance criteria, and binding prohibitions. Link the plan or PR instead of copying its full task and test matrix. After creation, return the new chat's link or identifier; do not also start that stage in the old chat.
+- If chat creation or project targeting is unavailable, report the limitation and provide a ready-to-use handoff prompt. Without user authorization, recommend a new chat instead of creating it. Compaction does not prove that every earlier detail survived. Neither context pressure nor a handoff authorizes a separate CLI session, worktree, or external write.
 
 For nontrivial tasks the parent may create a small JSON triage record. Examples: `examples/triage/*.json`. Run `python3 scripts/triage_check.py <file>` to validate **structure only**; this is not mandatory for every Codex turn and does not select a model automatically.

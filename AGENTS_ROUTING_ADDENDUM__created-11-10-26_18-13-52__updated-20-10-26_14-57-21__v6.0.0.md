@@ -1,10 +1,10 @@
 ---
 title: "Global Codex Universal Orchestration Addendum"
 created: "11-10-26 18-13-52"
-updated: "12-10-26 04-24-37"
+updated: "20-10-26 14-57-21"
 version: "6.0.0"
 status: "proposed"
-commit: "refactor(codex)!: adopt universal routing IDs"
+commit: "docs(cuo): synchronize hook-free routing policy"
 ---
 
 # Universal Orchestration v6.0 — Codex instructions
@@ -15,7 +15,7 @@ commit: "refactor(codex)!: adopt universal routing IDs"
 
 - Handle any kind of user task: research, design, engineering, business, analysis, docs, or hybrid. Never infer a whole execution workflow from domain keywords alone.
 - Small, bounded tasks: execute directly; do not construct ceremony or spawn an agent.
-- **Main thread only:** apply Adaptive Triage first; for substantial tasks, use `$codex-universal-orchestrate` (v5). Spawned subagents must not recursively orchestrate or launch further child agents; they load task-level Skills and execute their bounded handoff. Optimize for completed, verified outcomes per ChatGPT Pro usage.
+- **Main thread only:** apply Adaptive Triage first; for substantial tasks, use `$codex-universal-orchestrate` (v6.0). Spawned subagents must not recursively orchestrate or launch further child agents; they load task-level Skills and execute their bounded handoff. Optimize for completed, verified outcomes per ChatGPT Pro usage.
 - Discover and reuse installed Skills. Agent assigned a subtask loads its **own** required Skills; project context and parent-loaded Skills are not necessarily present in child context.
 - Select agent presets by task capability: `cuo-scout` Luna, `cuo-analyst` Sol High, `cuo-executor` Sol Medium, `cuo-reviewer` Sol High, `cuo-expert` Astra for consequential uncertainty. Do not use experimental Terra by default.
 - Spawn agents only when independence, context isolation or review justifies their overhead. Never run dependent tasks concurrently; avoid any overlap in mutable artifacts. Usually 0–2 subagents; configured cap 5 is not a target.
@@ -31,5 +31,5 @@ For each delegated task: GOAL / INPUTS / DEPENDENCIES / REQUIRED SKILLS (exact n
 
 - For substantive work distinguish process compliance, artifact validity and actual outcome quality. Report missing evidence as `needs_review`, not success.
 - Before assigning a required Skill, verify it exists in the active context or explicitly report missing/ambiguous runtime availability.
-- Use opt-in non-content Execution Trace only if requested; avoid private data and do not enable lifecycle Hooks by default.
+- Use opt-in non-content Execution Trace only if requested; avoid private data. CUO does not install or require lifecycle hooks.
 - Keep policy concise: use `$codex-universal-orchestrate` references for detailed decisions and validator examples.

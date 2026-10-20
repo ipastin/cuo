@@ -197,6 +197,17 @@ class PlanTests(unittest.TestCase):
         self.assertGreaterEqual(len(cases),12)
         self.assertGreaterEqual(len({c["domain"] for c in cases}),8)
 
+    def test_needs_input_triage_cases(self):
+        source=json.loads((ROOT/"evals/eval_cases.json").read_text(encoding="utf-8"))
+        triage=json.loads((ROOT/"evals/triage_needs_input.json").read_text(encoding="utf-8"))
+        self.assertEqual(triage["source"], "eval_cases.json")
+        self.assertEqual([c["id"] for c in triage["cases"]], ["E01", "E07", "E12"])
+        self.assertTrue({c["id"] for c in triage["cases"]} <= {c["id"] for c in source["cases"]})
+        for case in triage["cases"]:
+            self.assertEqual(case["expected_status"], "needs_input")
+            self.assertTrue(case["required_inputs"])
+            self.assertEqual(case["max_delegated_agent_launches"], 0)
+
 
 class SkillInventoryTests(unittest.TestCase):
     def test_skill_inventory_duplicate_name(self):

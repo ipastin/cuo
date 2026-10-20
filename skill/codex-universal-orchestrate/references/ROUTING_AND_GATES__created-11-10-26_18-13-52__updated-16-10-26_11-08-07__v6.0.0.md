@@ -1,10 +1,10 @@
 ---
 title: "Adaptive Routing and Quality Gates"
 created: "11-10-26 18-13-52"
-updated: "12-10-26 04-24-37"
+updated: "16-10-26 11-08-07"
 version: "6.0.0"
 status: "proposed"
-commit: "docs(codex): document v6 universal orchestration contracts"
+commit: "docs(cuo): distinguish child and main chat model selection"
 ---
 
 # Routing & Quality Gates
@@ -48,6 +48,8 @@ G0: Inputs / permission and privacy scope clear. G1: Task-level criteria defined
 - Subagent runtime permission overrides may differ from profile defaults. Confirm active permission mode before risky steps.
 
 ## Model choices
+
+Adaptive Triage chooses an execution mode and whether a bounded child task benefits from a preset. A child agent's configured model applies to that child; it does not change the model of the running main chat or current turn. The Codex runtime selects the main chat's model. Check the active client's capabilities before describing a model choice for a future chat. Where native chat creation supports a model option, set it only when the user explicitly requested that specific model; otherwise use the user's configured default. If a model cannot be selected or verified, state that limitation rather than promising a switch.
 
 Unspecified subagents default to Sol Medium for safer cross-domain generalization; choosing `cuo-scout` explicitly routes bounded exploratory subtasks to Luna High. This is deliberate: efficiency must not silently downgrade ambiguous work.
 

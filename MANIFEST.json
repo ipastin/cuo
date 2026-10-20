@@ -2,14 +2,14 @@
   "name": "Codex Universal Orchestration Kit",
   "version": "6.0.0",
   "created": "12-10-26 04-26-07",
-  "updated": "16-10-26 09-10-02",
-  "commit": "docs(codex): account for context capacity in triage",
+  "updated": "20-10-26 15-01-18",
+  "commit": "docs(cuo): synchronize hook-free routing policy",
   "scope": "Codex local clients using ChatGPT Pro login; no API or product routing",
-  "file_count_without_manifest": 49,
+  "file_count_without_manifest": 50,
   "files": [
     {
-      "path": "AGENTS_ROUTING_ADDENDUM__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
-      "sha256": "e686992c3822d8d599dce238c925df098ae719a84b4c8eb6ed975206c79fa9f6"
+      "path": "AGENTS_ROUTING_ADDENDUM__created-11-10-26_18-13-52__updated-20-10-26_14-57-21__v6.0.0.md",
+      "sha256": "662c4ee8529940a338ce9a90823817c776c841158c7deebb03727eb264c1075a"
     },
     {
       "path": "ARCHITECTURE__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
@@ -36,8 +36,8 @@
       "sha256": "4d6fcd54713d2dfcde3ed5c87c954d5d78a367db42e27a2fda087f248c7292f6"
     },
     {
-      "path": "README__created-11-10-26_18-13-52__updated-16-10-26_09-09-10__v6.0.0.md",
-      "sha256": "6d5a23e292b4640fb62a49ce8b06dccc92333564c2780c77bc0f6c4f930dcb60"
+      "path": "README__created-11-10-26_18-13-52__updated-20-10-26_15-01-18__v6.0.0.md",
+      "sha256": "5c86ef618ae57e4774205fd4a15a110d7d1dc6d45b31f8a781fd257156bd9880"
     },
     {
       "path": "TASK_CONTRACT_TEMPLATE__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
@@ -74,6 +74,10 @@
     {
       "path": "evals/eval_cases.json",
       "sha256": "128bbbd63a1341ff74e0b079ee6433c965ce9a4947e54970e3096b7cb2a7a56d"
+    },
+    {
+      "path": "evals/triage_needs_input.json",
+      "sha256": "680d40452e69c842f9879897e5ab47d2d17f4189785ced59ebfae0bb8efd394a"
     },
     {
       "path": "examples/plans/cross-domain.json",
@@ -161,19 +165,19 @@
     },
     {
       "path": "skill/codex-universal-orchestrate/SKILL.md",
-      "sha256": "93be2a611fbcb9981e0014b68d48579941bfe1709d052a9c017e11c4d6577c21"
+      "sha256": "b3d98b0c25b8703913efd6f404f8b55fd38163c8f88a7d67233509ca2b355981"
     },
     {
-      "path": "skill/codex-universal-orchestrate/references/ADAPTIVE_TRIAGE__created-12-10-26_04-21-24__updated-16-10-26_09-09-10__v6.0.0.md",
-      "sha256": "3cc72a42c8dc20e0f2f44ef305e742d5370e92a96461aac3d9df99c648b97020"
+      "path": "skill/codex-universal-orchestrate/references/ADAPTIVE_TRIAGE__created-12-10-26_04-21-24__updated-16-10-26_14-48-25__v6.0.0.md",
+      "sha256": "e6cc09b4eedecc48239c256beedf47307b6745cdc9bfaf0c1bc01ad551297722"
     },
     {
       "path": "skill/codex-universal-orchestrate/references/CORE_POLICY__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
       "sha256": "ec4f847654b0cf21e368443254fd19917f6176b839d884535cdbcba3c102a879"
     },
     {
-      "path": "skill/codex-universal-orchestrate/references/ROUTING_AND_GATES__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
-      "sha256": "4081c908fbc0200ee20dab87ac909e6d3b2bbea38ad272113e2a131f8c342a77"
+      "path": "skill/codex-universal-orchestrate/references/ROUTING_AND_GATES__created-11-10-26_18-13-52__updated-16-10-26_11-08-07__v6.0.0.md",
+      "sha256": "b3cac24eac004c9e547cae0504bec27da9788c51d52ca87952dc27e5347e456e"
     },
     {
       "path": "skill/codex-universal-orchestrate/references/SKILL_ELIGIBILITY__created-12-10-26_04-21-24__updated-12-10-26_04-24-37__v6.0.0.md",
@@ -197,7 +201,7 @@
     },
     {
       "path": "tests/test_kit.py",
-      "sha256": "0dfc42df0c8a507577dee4265e2a933b50ccbdc0f512cfd308ef3961f5aaf7cb"
+      "sha256": "b2ba42da65142ea8468587421f2ab823e231f66a5bb9cf512e709e9eaeeac383"
     },
     {
       "path": "tests/test_v51.py",
