@@ -1,8 +1,8 @@
 <!--
 created: "15-10-26 08-52-37"
-updated: "20-10-26 17-38-40"
+updated: "20-10-26 17-53-01"
 version: "6.0.0"
-commit: "docs(readme): explain adoption, routing, and verification"
+commit: "docs(readme): clarify AGENTS block replacement"
 -->
 
 # Codex Universal Orchestrator (CUO)
@@ -109,7 +109,7 @@ Creating a chat requires client support. A handoff should carry the stage's goal
 
 ## Updates and migration
 
-From a clean checkout, fetch the latest kit with `git pull --ff-only`, then preview the installer. An unchanged v6 installation is skipped. If installed managed files differ, the installer stops; review your local customizations before replacing them:
+From a clean checkout, fetch the latest kit with `git pull --ff-only`, then preview the installer. An unchanged v6 installation is skipped. Differing installed Skills, presets, or an existing merge fragment stop the installer. Review those local customizations before using:
 
 ```bash
 python3 scripts/install.py --replace-managed
@@ -117,6 +117,8 @@ python3 scripts/install.py --replace-managed --apply
 ```
 
 The first command previews replacement; the second replaces differing managed Skills and presets with backups under `~/.codex/routing-v6.0-backups/`. Existing `config.toml` settings still require a manual merge when they differ.
+
+Review the marked routing block in `AGENTS.md` before any `--apply`: the installer replaces differing block contents with the shipped policy and backs up the file, even without `--replace-managed`. Text outside that block is preserved.
 
 <details>
 <summary>Migrating from v4 or v5</summary>
