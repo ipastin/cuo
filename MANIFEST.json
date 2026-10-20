@@ -2,8 +2,8 @@
   "name": "Codex Universal Orchestration Kit",
   "version": "6.0.0",
   "created": "12-10-26 04-26-07",
-  "updated": "20-10-26 15-01-18",
-  "commit": "docs(cuo): synchronize hook-free routing policy",
+  "updated": "20-10-26 15-34-37",
+  "commit": "fix(cuo): prioritize authorized independent stage boundaries",
   "scope": "Codex local clients using ChatGPT Pro login; no API or product routing",
   "file_count_without_manifest": 50,
   "files": [
@@ -36,8 +36,8 @@
       "sha256": "4d6fcd54713d2dfcde3ed5c87c954d5d78a367db42e27a2fda087f248c7292f6"
     },
     {
-      "path": "README__created-11-10-26_18-13-52__updated-20-10-26_15-01-18__v6.0.0.md",
-      "sha256": "5c86ef618ae57e4774205fd4a15a110d7d1dc6d45b31f8a781fd257156bd9880"
+      "path": "README__created-11-10-26_18-13-52__updated-20-10-26_15-28-55__v6.0.0.md",
+      "sha256": "6be5d142b171776430a9e628bc93ba9ddff2b57ac3c69eb710ffe72657b5a60d"
     },
     {
       "path": "TASK_CONTRACT_TEMPLATE__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
@@ -165,11 +165,11 @@
     },
     {
       "path": "skill/codex-universal-orchestrate/SKILL.md",
-      "sha256": "b3d98b0c25b8703913efd6f404f8b55fd38163c8f88a7d67233509ca2b355981"
+      "sha256": "4159f758ab1fa337ce2bb261a7b74ecefd0ce022e6916bdf497f44d5bad699e7"
     },
     {
-      "path": "skill/codex-universal-orchestrate/references/ADAPTIVE_TRIAGE__created-12-10-26_04-21-24__updated-16-10-26_14-48-25__v6.0.0.md",
-      "sha256": "e6cc09b4eedecc48239c256beedf47307b6745cdc9bfaf0c1bc01ad551297722"
+      "path": "skill/codex-universal-orchestrate/references/ADAPTIVE_TRIAGE__created-12-10-26_04-21-24__updated-20-10-26_15-28-55__v6.0.0.md",
+      "sha256": "8893b859818b226cfca69e7b8dbd5abbebde2664682f8ce278bcffca5c99df8e"
     },
     {
       "path": "skill/codex-universal-orchestrate/references/CORE_POLICY__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
@@ -201,7 +201,7 @@
     },
     {
       "path": "tests/test_kit.py",
-      "sha256": "b2ba42da65142ea8468587421f2ab823e231f66a5bb9cf512e709e9eaeeac383"
+      "sha256": "9cb139a84ddaa2d0e417bc79a07121fdecae5b7fded3363c7f0c579fa6ba217b"
     },
     {
       "path": "tests/test_v51.py",
