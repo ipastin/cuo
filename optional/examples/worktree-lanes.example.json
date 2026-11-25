@@ -29,7 +29,7 @@
     },
     {
       "id": "route-architecture",
-      "model": "gpt-6.1-sol",
+      "model": "gpt-6.2-sol",
       "effort": "high",
       "sandbox": "read-only",
       "allowed_paths": [],
@@ -37,8 +37,8 @@
     },
     {
       "id": "route-advisor",
-      "model": "gpt-6-astra",
-      "effort": "low",
+      "model": "gpt-6.2-astra",
+      "effort": "high",
       "sandbox": "read-only",
       "allowed_paths": [],
       "prompt": "Independently challenge the highest-impact architecture risks. No edits."

@@ -117,7 +117,7 @@
       "executor": {
         "mode": "subagent",
         "agent": "cuo-analyst",
-        "model": "gpt-6.1-sol",
+        "model": "gpt-6.2-sol",
         "effort": "high"
       },
       "risk": "moderate",
@@ -150,7 +150,7 @@
       "executor": {
         "mode": "main",
         "agent": null,
-        "model": "gpt-6.1-sol",
+        "model": "gpt-6.2-sol",
         "effort": "medium"
       },
       "risk": "low",

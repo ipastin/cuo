@@ -238,5 +238,50 @@ class MigrationTests(unittest.TestCase):
         from validate_plan import validate
         self.assertEqual(validate(out)['task_count'],2)
 
+    def test_migrate_v6_model_pins(self):
+        for role, old_model, old_effort, new_model, new_effort in (
+            ("analyst", "gpt-6.1-sol", "high", "gpt-6.2-sol", "high"),
+            ("executor", "gpt-6.1-sol", "medium", "gpt-6.2-sol", "medium"),
+            ("reviewer", "gpt-6.1-sol", "high", "gpt-6.2-sol", "high"),
+            ("expert", "gpt-6-astra", "low", "gpt-6.2-astra", "high"),
+        ):
+            with self.subTest(role=role):
+                plan = example("examples/plans/research.json")
+                previous = plan["tasks"][0]["executor"]
+                previous.update(agent=f"cuo-{role}", model=old_model, effort=old_effort)
+                migrated, changes = MIGRATE.migrate(plan)
+                self.assertEqual(changes, 1)
+                self.assertEqual(migrated["tasks"][0]["executor"],
+                                 dict(previous, model=new_model, effort=new_effort))
+                self.assertEqual(previous["model"], old_model)
+                self.assertEqual(MIGRATE.validate(migrated)["task_count"], 2)
+                self.assertEqual(MIGRATE.migrate(migrated), (migrated, 0))
+
+    def test_migration_preserves_explicit_choices(self):
+        plan = example("examples/plans/research.json")
+        child, main = (t["executor"] for t in plan["tasks"])
+        child.update(agent="cuo-analyst", model="gpt-6.1-sol", effort="max")
+        main.update(model="gpt-6-astra", effort="low")
+        self.assertEqual(MIGRATE.migrate(plan), (plan, 0))
+        main["mode"] = "worktree"
+        self.assertEqual(MIGRATE.migrate(plan), (plan, 0))
+
+    def test_migration_reports_custom_child_conflict_before_writing(self):
+        plan = example("examples/plans/research.json")
+        child = plan["tasks"][0]["executor"]
+        child.update(agent="cuo-analyst", model="gpt-6.1-sol", effort="max")
+        with tempfile.TemporaryDirectory() as td:
+            source = Path(td) / "plan.json"
+            target = Path(td) / "migrated.json"
+            source.write_text(json.dumps(plan))
+            cmd = [sys.executable, str(ROOT / "scripts/migrate_plan.py"),
+                   str(source), "--out", str(target)]
+            for args in (cmd, [*cmd, "--apply"]):
+                result = subprocess.run(args, capture_output=True, text=True)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn("preset pins", result.stderr)
+                self.assertFalse(target.exists())
+            self.assertEqual(json.loads(source.read_text()), plan)
+
 
 if __name__=='__main__':unittest.main()

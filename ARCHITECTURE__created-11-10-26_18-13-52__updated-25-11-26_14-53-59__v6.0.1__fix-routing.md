@@ -1,10 +1,10 @@
 ---
 title: "Architecture, Decisions and Boundaries"
 created: "11-10-26 18-13-52"
-updated: "12-10-26 04-24-37"
-version: "6.0.0"
+updated: "25-11-26 14-53-59"
+version: "6.0.1"
 status: "proposed"
-commit: "docs(codex): document v6 universal orchestration contracts"
+commit: "fix(routing): select GPT-6.2 models by task"
 ---
 
 # Architecture — Universal Codex Orchestration v5
@@ -15,7 +15,7 @@ commit: "docs(codex): document v6 universal orchestration contracts"
 
 ```text
 User Goal
-  -> Main Codex (Sol; intent/deliverables/context/risk)
+  -> Main Codex (user-selected model)
        -> Existing Skills catalog: metadata matching
        -> Plan DAG: capabilities, dependencies, gates
        -> Exec choices

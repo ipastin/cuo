@@ -1,13 +1,13 @@
 ---
 title: "Global Codex Universal Orchestration Addendum"
 created: "11-10-26 18-13-52"
-updated: "20-10-26 14-57-21"
-version: "6.0.0"
+updated: "25-11-26 14-53-59"
+version: "6.0.1"
 status: "proposed"
-commit: "docs(cuo): synchronize hook-free routing policy"
+commit: "fix(routing): select GPT-6.2 models by task"
 ---
 
-# Universal Orchestration v6.0 — Codex instructions
+# Universal Orchestration v6.0.1 — Codex instructions
 
 > Installer inserts this section into existing active AGENTS.md. Do not override existing repo-specific safety requirements or product-runtime model policies.
 
@@ -17,7 +17,7 @@ commit: "docs(cuo): synchronize hook-free routing policy"
 - Small, bounded tasks: execute directly; do not construct ceremony or spawn an agent.
 - **Main thread only:** apply Adaptive Triage first; for substantial tasks, use `$codex-universal-orchestrate` (v6.0). Spawned subagents must not recursively orchestrate or launch further child agents; they load task-level Skills and execute their bounded handoff. Optimize for completed, verified outcomes per ChatGPT Pro usage.
 - Discover and reuse installed Skills. Agent assigned a subtask loads its **own** required Skills; project context and parent-loaded Skills are not necessarily present in child context.
-- Select agent presets by task capability: `cuo-scout` Luna, `cuo-analyst` Sol High, `cuo-executor` Sol Medium, `cuo-reviewer` Sol High, `cuo-expert` Astra for consequential uncertainty. Do not use experimental Terra by default.
+- Use `cuo-scout` for bounded lookup, `cuo-analyst` for synthesis, `cuo-executor` for scoped writes and `cuo-reviewer` for independent checks. Consult `cuo-expert` when an unresolved question could change a costly decision. Use the named preset's model and effort. When full-history forks inherit the parent model, pass a self-contained handoff with `fork_turns="none"`. Terra is opt-in for experiments.
 - Spawn agents only when independence, context isolation or review justifies their overhead. Never run dependent tasks concurrently; avoid any overlap in mutable artifacts. Usually 0–2 subagents; configured cap 5 is not a target.
 - Main thread owns integration, evidence review, actual quality gates, and final response. Subject matter/acceptance criteria come from applicable Skills and project docs; don't require Git/tests for noncode tasks.
 - Stay within actual permissions. Do not create worktrees or launch separate `codex exec` processes, write Figma/shared systems, merge, deploy or perform irreversible actions without explicit authorization. Never assume subagent `sandbox_mode` is a guaranteed security boundary against live runtime overrides.

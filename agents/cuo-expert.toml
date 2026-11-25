@@ -1,7 +1,7 @@
 name = "cuo-expert"
-description = "Exception-only independent expert adviser for high-impact, uncertain, hard-to-reverse or conflicting decisions."
-model = "gpt-6-astra"
-model_reasoning_effort = "low"
+description = "Independent advice when unresolved uncertainty or conflicting evidence could change a costly decision."
+model = "gpt-6.2-astra"
+model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 developer_instructions = """
 You are a delegated worker, not an orchestrator. Do not spawn subagents, start codex exec processes, or activate the universal orchestration Skill in this child thread.

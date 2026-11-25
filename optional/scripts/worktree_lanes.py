@@ -19,7 +19,10 @@ import subprocess
 import sys
 from zoneinfo import ZoneInfo
 
-VALID_MODELS = {"gpt-6.1-sol", "gpt-6-luna", "gpt-6-astra", "gpt-5.6-terra"}
+VALID_MODELS = {
+    "gpt-6.2-sol", "gpt-6.2-astra", "gpt-6-luna", "gpt-5.6-terra",
+    "gpt-6.1-sol", "gpt-6-astra",  # Explicit model choices in saved v6.0 manifests.
+}
 VALID_EFFORTS = {"low", "medium", "high", "xhigh", "max"}
 VALID_SANDBOXES = {"read-only", "workspace-write"}
 ID_RE = re.compile(r"^[a-z][a-z0-9_-]{1,39}$")

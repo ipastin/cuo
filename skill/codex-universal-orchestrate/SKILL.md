@@ -3,9 +3,9 @@ name: codex-universal-orchestrate
 description: Universal Codex orchestration for substantial multi-step or cross-domain tasks; reuse installed Skills, plan dependency DAGs, delegate bounded subtasks across models, verify deliverables. Use on explicit delegation or complex workflows; skip trivial tasks. Applies to Codex work, never product-runtime model routing.
 metadata:
   created: "11-10-26 18-13-52"
-  updated: "20-10-26 15-28-55"
-  version: "6.0.0"
-  commit: "fix(cuo): prioritize authorized independent stage boundaries"
+  updated: "25-11-26 14-53-59"
+  version: "6.0.1"
+  commit: "fix(routing): select GPT-6.2 models by task"
 ---
 
 # Universal Codex Orchestration
@@ -22,8 +22,8 @@ Input: user's goal plus applicable project policies, existing context, permissio
 1. Identify **intent, deliverables, context, risk and permissions** independently of domain keywords. Read applicable AGENTS/accepted project docs.
 2. Discover existing relevant Skills via metadata. Do not invent names, assume availability, or load every skill in the parent. Read `references/SKILL_EXECUTION__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md` for skill handoff.
 3. Confirm required Skill eligibility against `references/SKILL_ELIGIBILITY__created-12-10-26_04-21-24__updated-12-10-26_04-24-37__v6.0.0.md`. For meaningful multi-step tasks, define small independently verifiable outputs, prerequisites, source references, acceptance criteria, risk and approvals. Keep a concise Task DAG. See `references/CORE_POLICY__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md`.
-4. Keep straightforward or tightly coupled work in main. Parallelize only independent read-heavy subtasks or non-conflicting approved writes; cap is not a target. See `references/ROUTING_AND_GATES__created-11-10-26_18-13-52__updated-16-10-26_11-08-07__v6.0.0.md`.
-5. Route a **child agent** to an existing preset by required capability + outcome risk, not domain: `cuo-scout` (Luna), `cuo-analyst` (Sol High), `cuo-executor` (Sol Medium), `cuo-reviewer` (Sol High), `cuo-expert` (Astra for escalation). This does not change the current main chat's model. Unavailable presets/models require explicit reporting.
+4. Keep straightforward or tightly coupled work in main. Parallelize only independent read-heavy subtasks or non-conflicting approved writes; cap is not a target. See `references/ROUTING_AND_GATES__created-11-10-26_18-13-52__updated-25-11-26_14-53-59__v6.0.1__fix-routing.md`.
+5. Select a **child preset** for the work it owns. Use `cuo-scout` for extraction, `cuo-analyst` for synthesis, `cuo-executor` for bounded writes and `cuo-reviewer` for independent checks. Escalate the specific decision to `cuo-expert` when unresolved uncertainty could change a costly outcome. If the missing input belongs to the user, ask for it. On clients where full-history forks inherit the parent model, use `fork_turns="none"` with the named preset and the handoff below. Report an unavailable model. The main chat keeps its configured model.
 6. Give each child a **bounded task contract with exact mandatory Skill names** (if any). Child loads its own SKILL.md and supporting material, then executes with actual permissions. Optional Skill discovery is allowed only within task scope. Do not paste the entire parent Skill into child context.
 7. Wait for prerequisites and all necessary results. Use the Verification Contract and optional minimal Execution Trace in `references/VERIFICATION_TRACE__created-12-10-26_04-21-24__updated-12-10-26_04-24-37__v6.0.0.md`. Validate against **task-specific acceptance criteria** (e.g. source traceability for research, state coverage for UX, lint/tests for code), not generic code checks for every domain.
 8. Synthesize in main; resolve conflicting claims using evidence. Astra offers independent advice, not authority or user approval. Report exact checks, skill availability/use, deliverables, unresolved risks and approvals.
