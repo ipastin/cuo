@@ -1,8 +1,8 @@
 <!--
 created: "15-10-26 08-52-37"
-updated: "20-10-26 17-55-32"
-version: "6.0.0"
-commit: "docs(readme): clarify installer update and backup behavior"
+updated: "25-11-26 15-05-02"
+version: "6.0.1"
+commit: "fix(routing): select GPT-6.2 models by task"
 -->
 
 # Codex Universal Orchestrator (CUO)
@@ -15,7 +15,7 @@ It is a local kit for Codex clients using **ChatGPT Pro sign-in**, with one orch
 - **Delegate with a reason.** Give each independent subtask its own inputs, Skills, write scope, and acceptance criteria.
 - **Keep responsibility in the main chat.** Integrate results and distinguish a valid artifact from a successful outcome.
 
-**Status:** Kit v6.0.0; source policies are marked `proposed`. Offline checks are included; a quality or usage advantage over a single-agent baseline has not been established. See [verification and limits](#verification-and-limits).
+Kit v6.0.1 includes offline checks. The source policies carry `proposed` status. See [verification and limits](#verification-and-limits) for the evidence needed to compare outcomes and usage.
 
 ## Quickstart
 
@@ -31,7 +31,7 @@ cd cuo
 python3 scripts/install.py
 ```
 
-The installer prints `Codex Universal Orchestration v6.0.0 | DRY-RUN | global scope` and proposed changes. This command writes no installation files.
+The installer prints `Codex Universal Orchestration v6.0.1 | DRY-RUN | global scope` and lists the proposed changes.
 
 **2. Review the plan, then apply it.**
 
@@ -94,12 +94,18 @@ The included presets define these model preferences:
 | Preset | Responsibility | Model / effort |
 | --- | --- | --- |
 | `cuo-scout` | Bounded discovery, extraction, inventory, and source mapping | `gpt-6-luna` / high |
-| `cuo-analyst` | Analytical, conceptual, or architecture reasoning | `gpt-6.1-sol` / high |
-| `cuo-executor` | Approved implementation within an exclusive write scope | `gpt-6.1-sol` / medium |
-| `cuo-reviewer` | Independent review against task-specific acceptance criteria | `gpt-6.1-sol` / high |
-| `cuo-expert` | Advice on consequential uncertainty or conflicting evidence | `gpt-6-astra` / low |
+| `cuo-analyst` | Compare alternatives and synthesize evidence | `gpt-6.2-sol` / high |
+| `cuo-executor` | Implement an agreed change within its write scope | `gpt-6.2-sol` / medium |
+| `cuo-reviewer` | Check a deliverable against its acceptance criteria | `gpt-6.2-sol` / high |
+| `cuo-expert` | Resolve uncertainty that could change a costly decision | `gpt-6.2-astra` / high |
 
-The [config fragment](config-fragment.toml) proposes Sol Medium for the main model and unnamed children, with a concurrency cap of five. The cap is not a target. Presets do not switch the model of an already running main chat; actual model selection and permissions must be checked in the active runtime. The optional Terra candidate is not installed by default.
+The main chat uses the user's selected model. The [config fragment](config-fragment.toml) suggests Sol 6.2 medium for new installations and unnamed children, with up to five concurrent children. The optional Terra preset is available for A/B evaluation.
+
+### When Codex adds a model
+
+A scheduled check can query the signed-in Codex App Server with `model/list`, keep visible models, and follow `nextCursor` through the last page. Compare model IDs, supported reasoning efforts and optional `upgrade` hints with the previous successful snapshot. A new ID or a missing pin warrants review. Keep the last successful snapshot if the catalog request fails. [App Server model list](https://developers.openai.com/codex/app-server/#list-models-modellist)
+
+Before promoting a candidate, run the old and new models on the same role-specific inputs and effort. Check acceptance criteria, rework, elapsed time and available usage data. A reviewed patch can then update the presets and their examples together. The kit installer runs on demand.
 
 ### Continuing here or opening another chat
 
@@ -116,9 +122,11 @@ python3 scripts/install.py --replace-managed
 python3 scripts/install.py --replace-managed --apply
 ```
 
-The first command previews replacement; the second replaces differing managed Skills and presets with backups under `$CODEX_HOME/routing-v6.0-backups/` when `CODEX_HOME` is set, or `~/.codex/routing-v6.0-backups/` otherwise. Existing `config.toml` settings still require a manual merge when they differ.
+The first command previews the changes. The second backs up each differing Skill, preset and merge fragment before replacing it. Global backups live under `$CODEX_HOME/routing-v6.0-backups/`, normally `~/.codex/routing-v6.0-backups/`. You can merge selected settings into an existing `config.toml` manually.
 
 Review the marked routing block in `AGENTS.md` before any `--apply`: the installer replaces differing block contents with the shipped policy and backs up the file, even without `--replace-managed`. Text outside that block is preserved.
+
+For a saved plan with v6.0 model pins, preview `python3 scripts/migrate_plan.py old-plan.json --out updated-plan.json`. The preview validates the plan and reports any child model or effort that conflicts with its preset. Add `--apply` to write a separate copy. The migration updates recognized child presets and preserves explicit main and worktree model choices.
 
 <details>
 <summary>Migrating from v4 or v5</summary>
@@ -156,9 +164,9 @@ Runtime evidence is still needed to establish model availability, actual Skill u
 
 ## Documentation
 
-- [Original Kit README](README__created-11-10-26_18-13-52__updated-20-10-26_15-28-55__v6.0.0.md) — capabilities, files, and routing defaults.
+- [Original Kit README](README__created-11-10-26_18-13-52__updated-25-11-26_14-53-59__v6.0.1__fix-routing.md) — capabilities, files, and routing defaults.
 - [Installation and migration](INSTALL_AND_MIGRATION__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md) — v4/v5 upgrades, project scope, and rollback.
-- [Architecture](ARCHITECTURE__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md) — roles and task flow.
+- [Architecture](ARCHITECTURE__created-11-10-26_18-13-52__updated-25-11-26_14-53-59__v6.0.1__fix-routing.md) — roles and task flow.
 - [Task contract template](TASK_CONTRACT_TEMPLATE__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md) — bounded agent handoffs.
 - [Verification contract](skill/codex-universal-orchestrate/references/VERIFICATION_TRACE__created-12-10-26_04-21-24__updated-12-10-26_04-24-37__v6.0.0.md) — process, artifact, and outcome evidence.
 

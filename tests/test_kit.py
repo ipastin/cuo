@@ -44,8 +44,25 @@ class ConfigurationTests(unittest.TestCase):
 
     def test_unnamed_subagent_has_safe_generalist_fallback(self):
         d=tomllib.loads((ROOT/"config-fragment.toml").read_text(encoding="utf-8"))
-        self.assertEqual(d["agents"]["default_subagent_model"],"gpt-6.1-sol")
+        self.assertEqual(d["agents"]["default_subagent_model"],"gpt-6.2-sol")
         self.assertEqual(d["agents"]["default_subagent_reasoning_effort"],"medium")
+
+    def test_routing_by_task(self):
+        presets = PLAN.preset_catalog()
+        expected = {
+            "cuo-scout": ("gpt-6-luna", "high"),
+            "cuo-analyst": ("gpt-6.2-sol", "high"),
+            "cuo-executor": ("gpt-6.2-sol", "medium"),
+            "cuo-reviewer": ("gpt-6.2-sol", "high"),
+            "cuo-expert": ("gpt-6.2-astra", "high"),
+        }
+        self.assertEqual(
+            {name: (p["model"], p["model_reasoning_effort"]) for name, p in presets.items()},
+            expected,
+        )
+        for model, effort in expected.values():
+            self.assertIn(model, LEGACY.VALID_MODELS)
+            self.assertIn(effort, LEGACY.VALID_EFFORTS)
 
     def test_agent_unique_names_and_no_builtin_shadow(self):
         vals = [tomllib.loads(p.read_text(encoding="utf-8"))["name"] for p in (ROOT/"agents").glob("*.toml")]
@@ -60,7 +77,7 @@ class ConfigurationTests(unittest.TestCase):
         self.assertRegex(header, r"(?m)^name: codex-universal-orchestrate$")
         for k in ("created", "updated", "version", "commit"):
             self.assertRegex(header, f"(?m)^  {k}:")
-        self.assertIn('version: "6.0.0"',txt)
+        self.assertIn('version: "6.0.1"',txt)
 
     def test_md_artifact_metadata_and_filename(self):
         for p in ROOT.rglob("*.md"):
@@ -74,7 +91,11 @@ class ConfigurationTests(unittest.TestCase):
                     indent = "  " if p.name == "SKILL.md" else ""
                     self.assertRegex(text, f"(?m)^{indent}{k}:")
                 if p.name not in ("SKILL.md", "README.md"):
-                    self.assertRegex(p.name, r"__created-\d{2}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}__updated-\d{2}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}__v6\.0\.0\.md$")
+                    stamp = r"\d{2}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}"
+                    match = re.search(rf"__created-({stamp})__updated-({stamp})__v(\d+\.\d+\.\d+)(?:__[a-z-]+)?\.md$", p.name)
+                    self.assertIsNotNone(match)
+                    for key, value in zip(("created", "updated", "version"), match.groups()):
+                        self.assertIn(f'{key}: "{value.replace("_", " ")}"', text)
 
     def test_only_one_orchestrator_skill(self):
         skills=list((ROOT/"skill").rglob("SKILL.md"))
@@ -108,14 +129,14 @@ class PlanTests(unittest.TestCase):
     def test_conflicting_parallel_writes_rejected(self):
         p=example("engineering.json")
         p["tasks"][2]["depends_on"]=[]
-        p["tasks"][2]["executor"]={"mode":"subagent","agent":"cuo-executor","model":"gpt-6.1-sol","effort":"medium"}
+        p["tasks"][2]["executor"]={"mode":"subagent","agent":"cuo-executor","model":"gpt-6.2-sol","effort":"medium"}
         p["tasks"][2]["write_scopes"]=["src/components/"]
         with self.assertRaisesRegex(ValueError,"write-scope conflict"):
             PLAN.validate(p)
 
     def test_serialized_writes_allowed(self):
         p=example("engineering.json")
-        p["tasks"][2]["executor"]={"mode":"subagent","agent":"cuo-executor","model":"gpt-6.1-sol","effort":"medium"}
+        p["tasks"][2]["executor"]={"mode":"subagent","agent":"cuo-executor","model":"gpt-6.2-sol","effort":"medium"}
         p["tasks"][2]["write_scopes"]=["src/components/"]
         self.assertEqual(PLAN.validate(p)["task_count"],3)
 
@@ -127,7 +148,7 @@ class PlanTests(unittest.TestCase):
 
     def test_model_profile_mismatch_rejected(self):
         p=example("research.json")
-        p["tasks"][0]["executor"]["model"]="gpt-6.1-sol"
+        p["tasks"][0]["executor"]["model"]="gpt-6.2-sol"
         with self.assertRaisesRegex(ValueError,"preset pins"):
             PLAN.validate(p)
 
@@ -170,7 +191,7 @@ class PlanTests(unittest.TestCase):
 
     def test_worktree_gate_and_flag_required(self):
         p=example("research.json")
-        p["tasks"][0]["executor"]={"mode":"worktree","agent":None,"model":"gpt-6.1-sol","effort":"medium"}
+        p["tasks"][0]["executor"]={"mode":"worktree","agent":None,"model":"gpt-6.2-sol","effort":"medium"}
         with self.assertRaisesRegex(ValueError,"worktrees_enabled"):
             PLAN.validate(p)
         p["execution_policy"]["worktrees_enabled"]=True
@@ -278,6 +299,23 @@ class InstallerTests(unittest.TestCase):
         self.assertEqual((self.codex/"config.toml").read_text(),existing)
         self.assertTrue((self.codex/"routing-v6.0.fragment.toml").exists())
 
+    def test_model_upgrade_backs_up_differing_merge_fragment_once(self):
+        self.codex.mkdir()
+        config = self.codex / "config.toml"
+        config.write_text('model = "gpt-6.2-astra"\nmodel_reasoning_effort = "max"\n')
+        fragment = self.codex / "routing-v6.0.fragment.toml"
+        previous = 'model = "gpt-6.1-sol"\n# my merge notes\n'
+        fragment.write_text(previous)
+        self.assertNotEqual(self.install("--apply").returncode, 0)
+        self.assertEqual(fragment.read_text(), previous)
+        for _ in range(2):
+            result = self.install("--replace-managed", "--apply")
+            self.assertEqual(result.returncode, 0, result.stderr)
+        copies = list((self.codex / "routing-v6.0-backups").glob(f"{fragment.name}.*.bak"))
+        self.assertEqual([f.read_text() for f in copies], [previous])
+        self.assertEqual(fragment.read_text(), (ROOT / "config-fragment.toml").read_text())
+        self.assertEqual(tomllib.loads(config.read_text())["model_reasoning_effort"], "max")
+
     def test_upgrade_v4_requires_flag(self):
         self.codex.mkdir()
         old=f"header\n\n<!-- codex-hybrid-routing:v4 BEGIN -->\nold\n<!-- codex-hybrid-routing:v4 END -->\n"
@@ -301,7 +339,7 @@ class InstallerTests(unittest.TestCase):
         self.assertIn("codex-universal-routing:v5",(self.codex/"AGENTS.md").read_text())
         self.assertNotIn("codex-hybrid-routing:v4",(self.codex/"AGENTS.md").read_text())
         self.assertFalse(skill.exists())
-        self.assertIn('version: "6.0.0"', (self.home/".agents/skills/codex-universal-orchestrate/SKILL.md").read_text())
+        self.assertIn('version: "6.0.1"', (self.home/".agents/skills/codex-universal-orchestrate/SKILL.md").read_text())
         self.assertFalse(hy.exists())
         self.assertGreaterEqual(len(list((self.codex/"routing-v6.0-backups").glob("*"))),3)
 

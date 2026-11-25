@@ -18,7 +18,7 @@ import sys
 import tomllib
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "6.0.0"
+VERSION = "6.0.1"
 V4_BEGIN = "<!-- codex-hybrid-routing:v4 BEGIN -->"
 V4_END = "<!-- codex-hybrid-routing:v4 END -->"
 V5_BEGIN = "<!-- codex-universal-routing:v5 BEGIN -->"
@@ -126,7 +126,7 @@ def install_copy(src: Path, target: Path, ns, backups: Path):
             shutil.copy2(src, target)
 
 
-def install_config(src: Path, dst: Path, ns):
+def install_config(src: Path, dst: Path, ns, backups: Path):
     desired = tomllib.loads(src.read_text(encoding="utf-8"))
     if not dst.exists():
         print(f"{'APPLY' if ns.apply else 'PLAN '} create config: {dst}")
@@ -144,8 +144,12 @@ def install_config(src: Path, dst: Path, ns):
         print("NOTE config.toml untouched. Differences: " + ", ".join(mismatch))
         if ns.apply:
             pending.parent.mkdir(parents=True, exist_ok=True)
-            if pending.exists() and digest(pending) != digest(src) and not ns.replace_managed:
-                raise ValueError(f"Unrelated merge fragment exists at {pending}")
+            if pending.exists():
+                if digest(pending) == digest(src):
+                    return
+                if not ns.replace_managed:
+                    raise ValueError(f"Unrelated merge fragment exists at {pending}")
+                backup(pending, backups)
             shutil.copy2(src, pending)
     else:
         print(f"SKIP config already matches: {dst}")
@@ -263,7 +267,7 @@ def main(argv=None) -> int:
             else:
                 path.unlink()
     try:
-        install_config(ROOT / "config-fragment.toml", config_root / "config.toml", ns)
+        install_config(ROOT / "config-fragment.toml", config_root / "config.toml", ns, backups)
         for src in sorted((ROOT / "agents").glob("*.toml")):
             install_copy(src, config_root / "agents" / src.name, ns, backups)
         install_copy(ROOT / "skill" / NEW_SKILL, new_skill, ns, backups)

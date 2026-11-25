@@ -1,23 +1,23 @@
 {
   "name": "Codex Universal Orchestration Kit",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "created": "12-10-26 04-26-07",
-  "updated": "20-10-26 15-34-37",
-  "commit": "fix(cuo): prioritize authorized independent stage boundaries",
+  "updated": "25-11-26 15-05-02",
+  "commit": "fix(routing): select GPT-6.2 models by task",
   "scope": "Codex local clients using ChatGPT Pro login; no API or product routing",
   "file_count_without_manifest": 50,
   "files": [
     {
-      "path": "AGENTS_ROUTING_ADDENDUM__created-11-10-26_18-13-52__updated-20-10-26_14-57-21__v6.0.0.md",
-      "sha256": "662c4ee8529940a338ce9a90823817c776c841158c7deebb03727eb264c1075a"
+      "path": "AGENTS_ROUTING_ADDENDUM__created-11-10-26_18-13-52__updated-25-11-26_14-53-59__v6.0.1__fix-routing.md",
+      "sha256": "66b5a42fc0b0ef6da7ae5f5288099e0eca63dd7db0063e75b98072b181225ba8"
     },
     {
-      "path": "ARCHITECTURE__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
-      "sha256": "164106a64bd5472a36d3a7e2130658407f6d964a8a9fb992885c31d0eb8dd59e"
+      "path": "ARCHITECTURE__created-11-10-26_18-13-52__updated-25-11-26_14-53-59__v6.0.1__fix-routing.md",
+      "sha256": "69a91319716d7b8629da4b5757130d20002aca59b64cb9036d9464cbc82c8ee5"
     },
     {
-      "path": "CHANGELOG__created-11-10-26_18-23-01__updated-12-10-26_04-24-37__v6.0.0.md",
-      "sha256": "1f9821fcfc6569eb4489a21a9928ffc72fb2ca1bcf54f1e0710f999a4208a7e3"
+      "path": "CHANGELOG__created-11-10-26_18-23-01__updated-25-11-26_14-53-59__v6.0.1__fix-routing.md",
+      "sha256": "c27ba551d23024fe5e06b827aeb01f7b87f02774b5ad3cea2478af0f941c0665"
     },
     {
       "path": "EVALUATION_PLAN__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
@@ -36,8 +36,8 @@
       "sha256": "4d6fcd54713d2dfcde3ed5c87c954d5d78a367db42e27a2fda087f248c7292f6"
     },
     {
-      "path": "README__created-11-10-26_18-13-52__updated-20-10-26_15-28-55__v6.0.0.md",
-      "sha256": "6be5d142b171776430a9e628bc93ba9ddff2b57ac3c69eb710ffe72657b5a60d"
+      "path": "README__created-11-10-26_18-13-52__updated-25-11-26_14-53-59__v6.0.1__fix-routing.md",
+      "sha256": "3b138834074083a2ce7844f0c2df9e20b338b4f01b36fc89f4c5f8509608781f"
     },
     {
       "path": "TASK_CONTRACT_TEMPLATE__created-11-10-26_18-13-52__updated-12-10-26_04-24-37__v6.0.0.md",
@@ -49,19 +49,19 @@
     },
     {
       "path": "agents/cuo-analyst.toml",
-      "sha256": "74abea323ad7abe4be61e05a3d9c48427458f62069751057bed1569789a9d71d"
+      "sha256": "bdf553ea5fc7aea083a3b2312581866d918fcb64c6d8da70b47645d643091172"
     },
     {
       "path": "agents/cuo-executor.toml",
-      "sha256": "a77e5b3fb213ffcf47c76a5ef8623b1b642b64f2af651182c2fe8de684ec2bcd"
+      "sha256": "d5675336e33cb993a8fe129f8df6ff532b30e885377ba39c287796660b76e57f"
     },
     {
       "path": "agents/cuo-expert.toml",
-      "sha256": "13edae53430990fdb2058d6e34304184ef6c86afe02eaf998bea433b6008cef9"
+      "sha256": "517e8b7960ac01002ab11d8ec820c4c3a3a4eb4c8f4d1f3e29080a5a62b9674c"
     },
     {
       "path": "agents/cuo-reviewer.toml",
-      "sha256": "a2d6d12b6bfc9bb28755d5f33f2a3a6d22b27b855ca919f4234536eca1583a1b"
+      "sha256": "f06b584d06d970661d99bb5475ebb387adc2b5b2a6b99e115ba6f5ead8178fca"
     },
     {
       "path": "agents/cuo-scout.toml",
@@ -69,7 +69,7 @@
     },
     {
       "path": "config-fragment.toml",
-      "sha256": "9c07ab3e1942cdbc88c4ca66c04b320ee53b3b104ba868574e0e67b1f5dea85b"
+      "sha256": "072eecf70757db6128f68280534fabfe684fab300d842694d8e46e801ef0f196"
     },
     {
       "path": "evals/eval_cases.json",
@@ -81,15 +81,15 @@
     },
     {
       "path": "examples/plans/cross-domain.json",
-      "sha256": "8185336b95621b9112b30878bd6616fd15e8349a0c9285fe028931625c206c06"
+      "sha256": "df5067776fec7c2ebc48520c7afe2e1f52094dc2b2ae25ee8d56ab8607d2dbfc"
     },
     {
       "path": "examples/plans/engineering.json",
-      "sha256": "ee261b528e74c6bb484a89fb0a9c711fb7210fe37d476e51cad85fe69e97261b"
+      "sha256": "e6dc2c19a0227fa467d377cd9dbbc21b89e5214f27b399be509db77fa45ec008"
     },
     {
       "path": "examples/plans/research.json",
-      "sha256": "42b4b1db618b1089a0b61df1c8c6b95c0c79b2f9777d9cb6407902d5f0b50163"
+      "sha256": "f42b5ab8655b5b43fda067f7c5b69d33f5610a4a2ef220704e637c5d1e78b95a"
     },
     {
       "path": "examples/plans/simple-deterministic.json",
@@ -125,19 +125,19 @@
     },
     {
       "path": "optional/examples/worktree-lanes.example.json",
-      "sha256": "6105895edf0b06c3dc90e7707486afbc3ecac18d4e784df9b665d9de6f19b9f9"
+      "sha256": "37d069a8e3b94923a0872e82a2d54e52599882fac7b4e747d1a9709fd1a2c8ee"
     },
     {
       "path": "optional/scripts/worktree_lanes.py",
-      "sha256": "49f9b6a83aa48b4187a619195cf80c2e3cceb52d457e782ca3dd33e0b3751ff6"
+      "sha256": "958014ca0ff3e604434bb8ae8ac5d63288e04b561f18eba9e0b967ca4ffdd6d1"
     },
     {
       "path": "scripts/install.py",
-      "sha256": "a8b86bd18af532e3cfc640f046caa8692f994769a0c461a379a803a51921389b"
+      "sha256": "333503c969a2a6956e85168fd6ff99705fd60206b55035ffd2e57ea7dbf50a9d"
     },
     {
       "path": "scripts/migrate_plan.py",
-      "sha256": "ba030c9340da78beff839ed79a951c206961e9cabaee8402bdc08d60e721ac96"
+      "sha256": "9734936cc13fc46e3ec6abcbfaafea6eb3d0759629738287b5c3957e32564b89"
     },
     {
       "path": "scripts/skill_eligibility.py",
@@ -165,7 +165,7 @@
     },
     {
       "path": "skill/codex-universal-orchestrate/SKILL.md",
-      "sha256": "4159f758ab1fa337ce2bb261a7b74ecefd0ce022e6916bdf497f44d5bad699e7"
+      "sha256": "e97d7da56d4b6fbbac5d7354ddfdc85166ef7577ded8c56a713671127fcf0307"
     },
     {
       "path": "skill/codex-universal-orchestrate/references/ADAPTIVE_TRIAGE__created-12-10-26_04-21-24__updated-20-10-26_15-28-55__v6.0.0.md",
@@ -176,8 +176,8 @@
       "sha256": "ec4f847654b0cf21e368443254fd19917f6176b839d884535cdbcba3c102a879"
     },
     {
-      "path": "skill/codex-universal-orchestrate/references/ROUTING_AND_GATES__created-11-10-26_18-13-52__updated-16-10-26_11-08-07__v6.0.0.md",
-      "sha256": "b3cac24eac004c9e547cae0504bec27da9788c51d52ca87952dc27e5347e456e"
+      "path": "skill/codex-universal-orchestrate/references/ROUTING_AND_GATES__created-11-10-26_18-13-52__updated-25-11-26_14-53-59__v6.0.1__fix-routing.md",
+      "sha256": "140f9270558ea20c6f2a811b00010ee53bda31fbb2d1768a006b4ae23ee8a1e4"
     },
     {
       "path": "skill/codex-universal-orchestrate/references/SKILL_ELIGIBILITY__created-12-10-26_04-21-24__updated-12-10-26_04-24-37__v6.0.0.md",
@@ -201,11 +201,11 @@
     },
     {
       "path": "tests/test_kit.py",
-      "sha256": "9cb139a84ddaa2d0e417bc79a07121fdecae5b7fded3363c7f0c579fa6ba217b"
+      "sha256": "56e88620a18e8995cf49f3e0c5af8a5b388f5599d72b82a5d896d3844e7935c7"
     },
     {
       "path": "tests/test_v51.py",
-      "sha256": "ef1e481193457a8e4a9cd7e9c818628d61420f51d3f5cef44cb498c860884e36"
+      "sha256": "8a1622c10eac6dc8209f7d894d02d8574a53f81ae2ddaa19bf8f0d7255ad66aa"
     }
   ]
 }
